@@ -15,15 +15,15 @@ function [ mean_vec, var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)
 
 %%%
 % Support variables for testing
-n=50; % Number of observations in the training data.
+N=50; % Number of observations in the training data.
 D=2; % Number of covariates.
-X = randn(n,k);
-xs = randn(1,k);
+X = randn(N,D);
+xs = randn(1,D);
 sn = 0.1;
 hyp.lik = log(sn);
-noise = normrnd(0,sn,n,1);
-b0 = -k; % For this example, the constant of regression is just negative the number of covariates.
-y = b0 .* ones(n,1) + X * (1:k)' + noise; % Marginal effects are b1 = 1, b2 = 2, ..., bk = k
+noise = normrnd(0,sn,N,1);
+b0 = -D; % For this example, the constant of regression is just negative the number of covariates.
+y = b0 .* ones(N,1) + X * (1:D)' + noise; % Marginal effects are b1 = 1, b2 = 2, ..., bD = D
 train_X = normalize(X); % Normalize training data
 train_y = normalize(y); % Normalize training data
 meanfunc = {@meanZero};
@@ -57,9 +57,9 @@ end
 
 % zsa
 
-dc_xs_X_dxs = zeros(N,D);
+dc_xs_X_dxs = zeros(D,N);
 for i = 1:N
-    dc_xs_X_dxs(i,:) = (-1/exp(hyp.cov(1))^2) * (xs - X(i,:)) * feval(covfunc{:}, hyp.cov, X(i,:), xs);
+    dc_xs_X_dxs(:,i) = (-1/exp(hyp.cov(1))^2) * (xs' - X(i,:)') * feval(covfunc{:}, hyp.cov, X(i,:), xs);
 end
 dc_X_xs_dxs = -dc_xs_X_dxs';
 DxDterm2 = dc_xs_X_dxs * inv(Cs) * dc_X_xs_dxs;
@@ -68,7 +68,7 @@ DxDterm2 = dc_xs_X_dxs * inv(Cs) * dc_X_xs_dxs;
 % mean
 mean_vec = (-1/exp(hyp.cov(1))^2) * dXs' * (feval(covfunc{:}, hyp.cov, X, xs) .* (Cs \ y));
 % vcov
-DxDterm1 = ;
+DxDterm1 = 0;
 var_mat = DxDterm1 + DxDterm2;
 
 vcov_me = 
