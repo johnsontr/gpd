@@ -46,6 +46,13 @@ hyp.mean = [];
 
 % Define components
 
+if str2num(feval(covfunc{:})) == 2
+    Lambda = diag(repmat(exp(hyp.cov(1))^2,D,1)); 
+else % If it's not covSEiso, then it's covSEard
+    Lambda = diag(exp(hyp.cov(1:D-1))^2); 
+end
+
+
 % Define uninverted C(X) + sn^2 I
 Cs = (feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N));
 
@@ -55,24 +62,20 @@ for i = 1:N
     dXs(i,:) = xs - X(i,:);
 end
 
-% zsa
-
 dc_xs_X_dxs = zeros(D,N);
 for i = 1:N
-    dc_xs_X_dxs(:,i) = (-1/exp(hyp.cov(1))^2) * (xs' - X(i,:)') * feval(covfunc{:}, hyp.cov, X(i,:), xs);
+    dc_xs_X_dxs(:,i) = -(Lambda^-1) * (xs' - X(i,:)') * feval(covfunc{:}, hyp.cov, X(i,:), xs);
 end
-dc_X_xs_dxs = -dc_xs_X_dxs';
-DxDterm2 = dc_xs_X_dxs * inv(Cs) * dc_X_xs_dxs;
 
 % specific to the covSEiso kernel
 % mean
-mean_vec = (-1/exp(hyp.cov(1))^2) * dXs' * (feval(covfunc{:}, hyp.cov, X, xs) .* (Cs \ y));
+mean_vec = - Lambda^-1 * dXs' * (feval(covfunc{:}, hyp.cov, X, xs) .* (Cs \ y));
 % vcov
-DxDterm1 = 0;
-var_mat = DxDterm1 + DxDterm2;
-
-vcov_me = 
-% For covfunc = {@covSEiso}
+if str2num(feval(covfunc{:})) == 2
+    var_mat = Lambda^-1 * exp(hyp.cov(2))^2 - dc_xs_X_dxs * inv(Cs) * (-dc_xs_X_dxs');
+else % If it's not covSEiso, then it's covSEard
+    var_mat = Lambda^-1 * exp(hyp.cov(D+1))^2 - dc_xs_X_dxs * inv(Cs) * (-dc_xs_X_dxs');
+end
 
 
 
