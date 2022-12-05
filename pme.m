@@ -11,7 +11,7 @@ function [ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)
     MEs = zeros(D,M);
     VARs = zeros(D,M);
     for i = 1:M
-        [ MEs(:,i), VARs(:,i)] = me(hyp, meanfunc, covfunc, X, y, Xs(i,:));
+        [ MEs(:,i), VARs(:,i) ] = me(hyp, meanfunc, covfunc, X, y, Xs(i,:));
     end
 
 end
