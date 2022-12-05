@@ -11,10 +11,10 @@ function [ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)
     [ N, D ] = size(X);
     
     % Make the length scale diagonal matrix, which depends on the covariance function.
-    if str2num(feval(covfunc{:})) == 2                  % If the covfunc requires two inputs, then it's covSEiso
-        Lambda = diag(repmat(exp(hyp.cov(1))^2,D,1));   % hyp.cov(2) is the scale factor
-    else                                                % If it's not covSEiso, then it's covSEard
-        Lambda = diag(exp(hyp.cov(1:D))^2);             % hyp.cov(D+1) is the scale factor
+    if str2num(feval(covfunc{:})) == 2                      % If the covfunc requires two inputs, then it's covSEiso
+        Lambda = diag(repmat(exp(hyp.cov(1))^2,D,1));  % hyp.cov(2) is the scale factor
+    else                                                    % If it's not covSEiso, then it's covSEard
+        Lambda = diag((exp(hyp.cov(1:D)).^2));        % hyp.cov(D+1) is the scale factor
     end
     
     % Define uninverted C(X) + sn^2 I
