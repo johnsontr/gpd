@@ -53,13 +53,22 @@ learnedHyp = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train
 
 % w.r.t. Sample X
 d=1;
-plotme(d, hyp, meanfunc, covfunc, X, y);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y);
 d=2;
-plotme(d, hyp, meanfunc, covfunc, X, y);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y);
 
 % w.r.t. Predictions Xs
 d=1;
-plotme(d, hyp, meanfunc, covfunc, X, y, Xs);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y, Xs);
 d=2;
-plotme(d, hyp, meanfunc, covfunc, X, y, Xs);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y, Xs);
 
+%% Make plots for grid estimates
+
+d=1;
+numsteps=500;
+gridme(d, numsteps, learnedHyp, meanfunc, covfunc, X, y);
+
+d=2;
+numsteps=500;
+gridme(d, numsteps, learnedHyp, meanfunc, covfunc, X, y);

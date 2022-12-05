@@ -51,33 +51,24 @@ learnedHyp = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train
 
 % w.r.t. Sample X
 d=1;
-plotme(d, hyp, meanfunc, covfunc, X, y);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y);
 d=2;
-plotme(d, hyp, meanfunc, covfunc, X, y);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y);
 
 % w.r.t. Predictions Xs
 d=1;
-plotme(d, hyp, meanfunc, covfunc, X, y, Xs);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y, Xs);
 d=2;
-plotme(d, hyp, meanfunc, covfunc, X, y, Xs);
+plotme(d, learnedHyp, meanfunc, covfunc, X, y, Xs);
 
 %% Make plots for grid estimates
 
-% Make a grid on xd based on its range
-% Define the number of points on which to predict
+d=1;
+numsteps=500;
+gridme(d, numsteps, learnedHyp, meanfunc, covfunc, X, y);
+
 d=2;
-numsteps = 1000;
-range = max(X(:,d))-min(X(:,d)) + 4*sqrt(var(X(:,d)));
-gXd = ((min(X(:,d)) - 2*sqrt(var(X(:,d)))):range/(numsteps-1):(max(X(:,d)) + 2*sqrt(var(X(:,d)))))';
+numsteps=500;
+gridme(d, numsteps, learnedHyp, meanfunc, covfunc, X, y);
 
-% Hold all covariates at their means
-meanX_gXd = zeros(numsteps, D);
-for k = 1:D
-    meanX_gXd(:,k) = mean(X(:,k))*ones(numsteps,1);
-end
-% Replace the d^th column of Xs_gXd with the grid of values gXd
-meanX_gXd(:,d) = gXd;
-
-% Predict marginal effects on the grid
-plotme(d, hyp, meanfunc, covfunc, X, y, meanX_gXd);
 

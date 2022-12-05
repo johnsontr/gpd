@@ -11,10 +11,12 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             plt = fill([plotSort(:,1); flip(plotSort(:,1))], f, [7 7 7]/8);
             plot(X(:,d), f1(d,:)', 'o')
             plot(X(:,d), h1(d)*ones(size(X(:,d), 1), 1), '-')
-            xlabel('X_i')
-            ylabel('Marginal effect \partial Y_i \\ \partial X_i')
+            xlabel('X')
+            ylabel('Marginal effect \partial Y \\ \partial X')
             plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
-            xlim([min(X(:,d)) - sqrt(var(X(:,d))), max(X(:,d)) + sqrt(var(X(:,d)))])
+            plot(min(xlim),h1(d),'*')
+            text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
+            xlim([min(X(:,d)), max(X(:,d))])
             hold off;
             legend('95% credible region', ...
                 'Sample marginal effects', ...
@@ -32,9 +34,11 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             plot(X(:,d), f1(d,:)', 'o')                             % sample
             plot(Xs(:,d), h1(d)*ones(size(Xs(:,d), 1), 1), '-')
             plot(Xs(:,d), g1(d,:)', '.')
-            xlabel('X_i')
-            ylabel('Marginal effect \partial Y_i \\ \partial X_i')
+            xlabel('X')
+            ylabel('Marginal effect \partial Y \\ \partial X')
             plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
+            plot(min(xlim),h1(d),'*')
+            text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
             hold off;
             legend('95% credible region', ...
                 'Sample marginal effects', ...
