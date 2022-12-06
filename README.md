@@ -32,8 +32,8 @@ The _Dx1_ vector of variances in (2) is pulled from the diagonal of the variance
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
-* _meanfunc_ - The meanfunc of the corresponding gpml model (only {@meanZero} is supported at this time)
-* _covfunc_ - The covfunc of the parent gpml model (only {@covSEiso} and {@covSEard} are supported at this time)
+* _meanfunc_ - The meanfunc of the corresponding gpml model (only _{@meanZero}_ is supported at this time)
+* _covfunc_ - The covfunc of the parent gpml model (only _{@covSEiso}_ and _{@covSEard}_ are supported at this time)
 * _X_ - The _NxD_ non-normalized training inputs used when training the parent gpml model
 * _y_ - The _Nx1_ non-normalized training outputs used when training the parent gpml model
 * _xs_  - A _1xD_ non-normalized test point
@@ -46,8 +46,8 @@ The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, .
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
-* _meanfunc_ - The meanfunc of the corresponding gpml model (only {@meanZero} is supported at this time)
-* _covfunc_ - The covfunc of the parent gpml model (only {@covSEiso} and {@covSEard} are supported at this time)
+* _meanfunc_ - The meanfunc of the corresponding gpml model (only _{@meanZero}_ is supported at this time)
+* _covfunc_ - The covfunc of the parent gpml model (only _{@covSEiso}_ and _{@covSEard}_ are supported at this time)
 * _X_ - The _NxD_ non-normalized training inputs used when training the parent gpml model
 * _y_ - The _Nx1_ non-normalized training outputs used when training the parent gpml model
 * _Xs_ (optional) - A _MxD_ non-normalized matrix of test points
@@ -60,8 +60,8 @@ Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics acr
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
-* _meanfunc_ - The meanfunc of the corresponding gpml model (only {@meanZero} is supported at this time)
-* _covfunc_ - The covfunc of the parent gpml model (only {@covSEiso} and {@covSEard} are supported at this time)
+* _meanfunc_ - The meanfunc of the corresponding gpml model (only _{@meanZero}_ is supported at this time)
+* _covfunc_ - The covfunc of the parent gpml model (only _{@covSEiso}_ and _{@covSEard}_ are supported at this time)
 * _X_ - The _NxD_ non-normalized training inputs used when training the parent gpml model
 * _y_ - The _Nx1_ non-normalized training outputs used when training the parent gpml model
 * _Xs_ (optional) - A _MxD_ non-normalized matrix of test points
@@ -75,8 +75,8 @@ The function `plotme()` is the main plotting function of the package. Other plot
 **Inputs**:
 * _d_ - The explanatory variable _d_ in _{ 1, ..., D }_ for which plots will be made
 * _hyp_ - Model hyperparameters learned from the parent gpml model
-* _meanfunc_ - The meanfunc of the corresponding gpml model (only {@meanZero} is supported at this time)
-* _covfunc_ - The covfunc of the parent gpml model (only {@covSEiso} and {@covSEard} are supported at this time)
+* _meanfunc_ - The meanfunc of the corresponding gpml model (only _{@meanZero}_ is supported at this time)
+* _covfunc_ - The covfunc of the parent gpml model (only _{@covSEiso}_ and _{@covSEard}_ are supported at this time)
 * _X_ - The _NxD_ non-normalized training inputs used when training the parent gpml model
 * _y_ - The _Nx1_ non-normalized training outputs used when training the parent gpml model
 * _Xs_ (optional) - A _MxD_ non-normalized matrix of test points
@@ -92,8 +92,8 @@ The function `gridme()` automates some of the prediction process. The function `
 * _d_ - The explanatory variable _d_ in _{ 1, ..., D }_ for which plots will be made. Gridding on dimension _d_ creates _numsteps_ observations over _min(X(:,d)) - 2*sqrt(var(X(:,d)))_ and _max(X(:,d)) + 2*sqrt(var(X(:,d)))_ with other explanatory variables held at their mean.
 * _numsteps_ - 
 * _hyp_ - Model hyperparameters learned from the parent gpml model
-* _meanfunc_ - The meanfunc of the corresponding gpml model (only {@meanZero} is supported at this time)
-* _covfunc_ - The covfunc of the parent gpml model (only {@covSEiso} and {@covSEard} are supported at this time)
+* _meanfunc_ - The meanfunc of the corresponding gpml model (only _{@meanZero}_ is supported at this time)
+* _covfunc_ - The covfunc of the parent gpml model (only _{@covSEiso}_ and _{@covSEard}_ are supported at this time)
 * _X_ - The _NxD_ non-normalized training inputs used when training the parent gpml model
 * _y_ - The _Nx1_ non-normalized training outputs used when training the parent gpml model
 * _interaction_indices_ (optional) - A vector with length between 2 and _D_ with unique integer entries between 1 and D that specify which dimensions of the explanatory variables are to be gridded. Each explanatory variable is gridded so that _numsteps_ observations are made over _min(X(:,d)) - 2*sqrt(var(X(:,d)))_ and _max(X(:,d)) + 2*sqrt(var(X(:,d)))_. All dimensions not specified in _interaction_indices_ are held at their mean.
@@ -128,7 +128,7 @@ Encode fixed effects as one-hot.
 :---:|:---:|:---:
 ![]() | ![]() | ![]()
 
-## 2.2 Bivariate functions with iid N(0,1) explanatory variables and no fixed or random effects
+## 2.2 Bivariate functions with iid standard normal covariates and no fixed or random effects
 
 ### covSEiso
 
@@ -154,7 +154,7 @@ Encode fixed effects as one-hot.
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_ard.png)
 
-## 2.3 Bivariate functions with jointly normal explanatory variables and no fixed or random effects
+## 2.3 Bivariate functions with jointly normal covariates and no fixed or random effects
 
 ### covSEiso
 
