@@ -20,6 +20,12 @@ JB has implemented routines from these two papers with _R_ packages [gpirt](http
 3. [December 11, 2020 - Derivative Gaussian Processes in Stan](https://herbsusmann.com/2020/12/11/derivative-gaussian-processes-in-stan/)
 
 
+Table of Contents (include links)
+* A
+* B
+* C
+
+
 # 1. Using the _gpd_ package
 
 This section describes how to use package functions and provides a demo for general usage.
