@@ -56,7 +56,6 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
             plot(Xs(:,d), g1(d,:)', '.')
             xlabel('X')
             ylabel('Marginal effect \partial Y \\ \partial X')
-            text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
             hold off;
             legend('95% credible region', ...
                 'Predicted marginal effects')
