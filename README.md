@@ -1,17 +1,15 @@
 # gpd - Gaussian process derivatives for marginal effects
 
-*Dependencies*: 
+**Package Dependencies**: 
 * _GNU Octave_ versions 3.2.x and higher **or** _MATLAB_ versions 7.x and higher
 * _gpml-matlab-v3.6-2015-07-07_
 
-*Summary*: This package adds functionality that allows calculating marginal effects from Gaussian process regression models trained in the MATLAB package _gpml_. To my knowledge, no other MATLAB package provides this functionality. Only `{@meanZero}` mean functions and `{@covSEiso}` or `{@covSEard}` covariance functions are supported at this time. 
-
-*Future Features*: Future functionality will include support for:
+**Package Summary**: This package adds functionality that allows calculating marginal effects from Gaussian process regression models trained in the MATLAB package _gpml_. To my knowledge, no other MATLAB package provides this functionality. Only `{@meanZero}` mean functions and `{@covSEiso}` or `{@covSEard}` covariance functions are supported at this time.  Future functionality will include support for:
 1. `{@meanConst}`, `{@meanLinear}`, and `{@meanSum, {@meanLinear, @meanConst}}` mean functions,
 2. sums and products of `{@covSEiso}` and `{@covSEard}` covariance functions, and
 3. covariate masking for mean and covariance functions.
 
-*Descripton*: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
+**Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
 
 This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/).   
 1. [GPIRT: A Gaussian Process Model for Item Response Theory](https://proceedings.mlr.press/v124/duck-mayr20a.html)
