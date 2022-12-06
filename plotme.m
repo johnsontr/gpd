@@ -1,4 +1,4 @@
-function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, interactions)
+function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
 
     switch nargin
         case 6
