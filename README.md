@@ -32,7 +32,7 @@ This section describes how to use package functions and provides a demo for gene
 
 ## 1.1 Package functions
 
-This section provides detail for functions in the package. I provide detail for the _Inputs_* required for each function, the _Outputs_* expected from each function, and a _Description_* of what each function does.
+This section provides detail for functions in the package. I provide detail for the **_Inputs_** required for each function, the _Outputs_** expected from each function, and a _Description_** of what each function does.
 
 There are five functions in the package _gpd_.
 1. _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_
