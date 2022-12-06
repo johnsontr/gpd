@@ -142,7 +142,7 @@ Gaussian process regression models applied to functions with a single input are 
 
 ## 2.2 Bivariate functions with independent normal covariates
 
-#### 2.2.1 Linear
+### 2.2.1 Linear
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -152,7 +152,7 @@ Gaussian process regression models applied to functions with a single input are 
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_ard.png)
 
-#### 2.2.2 Linear with interactions
+### 2.2.2 Linear with interactions
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -164,7 +164,7 @@ Gaussian process regression models applied to functions with a single input are 
 
 ## 2.3 Bivariate functions with jointly normal covariates
 
-#### 2.3.1 Linear
+### 2.3.1 Linear
 
-#### 2.3.2 Linear with interactions
+### 2.3.2 Linear with interactions
 
