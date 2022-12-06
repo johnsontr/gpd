@@ -46,14 +46,16 @@ d=1;
 numsteps=500;
 [ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
+[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
-%xlim([min(gridX(:,2)), max(gridX(:,2))])
 hold off;
+
 
 % Save the grid plot
 saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
@@ -62,16 +64,15 @@ close;
 d=2;
 numsteps=500;
 [ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
-xlim([min(gridX(:,1)), max(gridX(:,1))])
 hold on;
+[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-
 xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X2')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
 plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
-
 hold off;
 
 % Save the grid plot
@@ -103,13 +104,14 @@ d=1;
 numsteps=500;
 [ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
+[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
-xlim([min(gridX(:,2)), max(gridX(:,2))])
+plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
 
@@ -121,13 +123,14 @@ d=2;
 numsteps=500;
 [ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
+[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X2')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
-xlim([min(gridX(:,1)), max(gridX(:,1))])
+plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
 hold off;
 
 % Save the grid plot

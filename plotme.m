@@ -1,4 +1,4 @@
-function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
+function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, interactions)
 
     switch nargin
         case 6
@@ -20,7 +20,7 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             legend('95% credible region', ...
                 'Sample marginal effects', ...
                 'Mean of sample marginal effects')
-        otherwise
+        case 7
             % Prediction
             [f1, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
             [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);
@@ -35,13 +35,30 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             plot(Xs(:,d), g1(d,:)', '.')
             xlabel('X')
             ylabel('Marginal effect \partial Y \\ \partial X')
-            %plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
+            plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
             plot(min(xlim),h1(d),'*')
             text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
             hold off;
             legend('95% credible region', ...
                 'Sample marginal effects', ...
                 'Mean of sample marginal effects', ...
+                'Predicted marginal effects')
+        case 8
+            % Don't plot sample marginal effects (yet).
+            % Prediction
+            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);
+            [h1, ~, ~] = ame(hyp, meanfunc, covfunc, X, y);         % sample
+            hold on;
+            plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
+            g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
+            plt = fill([plotSort(:,1); flip(plotSort(:,1))], g, [7 7 7]/8);
+            xlim([min(Xs(:,d)), max(Xs(:,d))])
+            plot(Xs(:,d), g1(d,:)', '.')
+            xlabel('X')
+            ylabel('Marginal effect \partial Y \\ \partial X')
+            text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
+            hold off;
+            legend('95% credible region', ...
                 'Predicted marginal effects')
     end
 
