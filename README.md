@@ -20,7 +20,7 @@ JB has implemented routines from these two papers with _R_ packages [gpirt](http
 3. [December 11, 2020 - Derivative Gaussian Processes in Stan](https://herbsusmann.com/2020/12/11/derivative-gaussian-processes-in-stan/)
 
 
-Table of Contents (include links)
+## Table of Contents
 * A
 * B
 * C
