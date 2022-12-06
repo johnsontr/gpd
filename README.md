@@ -1,5 +1,9 @@
 # gpd
- Gaussian process derivatives for marginal effects
+ Gaussian process derivatives for marginal effects. Uses MATLAB and gpml-matlab-v3.6-2015-07-07.
+
+# Simulations
+
+The remainder produces plots which verify that the method is working correctly.
 
 ## Univariate functions
 
