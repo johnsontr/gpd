@@ -43,7 +43,7 @@ Note how _trainX_ and _trainy_ are used instead of X and y for calling `me()`. L
 
 ### 1.1.1 _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_  
 
-The function `me()`calculates the _marginal effect_ of a single test point. Core functionality of the package relies on the _me()_ function. For any test point xs, it calculates:  
+The function `me()` calculates the _marginal effect_ of a single test point. Core functionality of the package relies on the _me()_ function. For any test point xs, it calculates:  
 
 1. the _Dx1_ vector of expected marginal effects with respect to each epxlanatory variable _k = 1, ..., D_, and  
 2. the _Dx1_ vector of variances associated with the expected marginal effect.  
