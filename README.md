@@ -127,7 +127,7 @@ This section provides plots from `gridme()` which demonstrate the method more th
 
 ## 2.1 Univariate functions
 
-### 2.1.2 Linear, quadratic, and cubic expansions without fixed or random effects
+### 2.1.2 Linear, quadratic, and cubic expansions
 
 Gaussian process regression models applied to functions with a single input are equivalent when specified with either covSEiso or covSEard.
 
@@ -135,51 +135,31 @@ Gaussian process regression models applied to functions with a single input are 
 :---:|:---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
-### 2.1.3 Linear, quadratic, and cubic expansions with fixed effects
+## 2.2 Bivariate functions with independent normal covariates
 
-Encode fixed effects as one-hot.
+#### 2.2.1 Linear
 
-| Linear+FE | Quadratic+FE | Cubic+FE |
-:---:|:---:|:---:
-![]() | ![]() | ![]()
-
-## 2.2 Bivariate functions with iid standard normal covariates and no fixed or random effects
-
-### covSEiso
-
-#### 2.2.1 Bivariate linear function and no fixed or random effects
-| X1 | X2 |
+| covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_iso.png)
 
-#### 2.2.2 Bivariate linear function with interactions and no fixed or random effects
-| X1 | X2 |
-:---:|:---:
-![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_iso.png)
-
-### covSEard
-
-#### 2.2.3 Bivariate linear function and no fixed or random effects
-| X1 | X2 |
+| covSEard - X1 | covSEard - X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_ard.png)
 
-#### 2.2.4 Bivariate linear function with interactions and no fixed or random effects
-| X1 | X2 |
+#### 2.2.2 Linear with interactions
+
+| covSEiso - X1 | covSEiso - X2 |
+:---:|:---:
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_iso.png)
+
+| covSEard - X1 | covSEard - X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_ard.png)
 
-## 2.3 Bivariate functions with jointly normal covariates and no fixed or random effects
+## 2.3 Bivariate functions with jointly normal covariates
 
-### covSEiso
+#### 2.3.1 Linear
 
-#### 2.3.1 Bivariate linear function and no fixed or random effects
-
-#### 2.3.2 Bivariate linear function with interactions and no fixed or random effects
-
-### covSEard
-
-#### 2.3.3 Bivariate linear function and no fixed or random effects
-
-#### 2.3.4 Bivarite linear function with interactions and no fixed or random effects
+#### 2.3.2 Linear with interactions
 
