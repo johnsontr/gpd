@@ -1,5 +1,23 @@
-# gpd
- Gaussian process derivatives for marginal effects. Uses MATLAB and gpml-matlab-v3.6-2015-07-07.
+# gpd - Gaussian process derivatives for marginal effects.
+
+Uses MATLAB and gpml-matlab-v3.6-2015-07-07.
+
+# Usage
+
+## Package functions
+This section describes how to use package functions and provides a demo for general usage.
+
+### me
+
+### pme
+
+### ame
+
+### plotme
+
+### gridme
+
+## Package demo
 
 # Simulations
 
