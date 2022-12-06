@@ -22,7 +22,7 @@ Core functionality of the package relies on the _me()_ function. For any test po
 
 The _Dx1_ vector of variances in (2) is pulled from the diagonal of the variance-covariance matrix associated with (1).
 
-*Inputs*:
+**Inputs**:
 * _hyp_
 * _meanfunc_
 * _covfunc_
@@ -30,13 +30,13 @@ The _Dx1_ vector of variances in (2) is pulled from the diagonal of the variance
 * _y_
 * _xs_ 
 
-*Outputs*: Two _Dx1_ vectors where _D_ is the number of columns in _X_. The first output is the _Dx1_ vector of expected marginal effects w.r.t. explanatory variables _k = 1, ..., D_ calculated with respect to test input _xs_. The second output is the _Dx1_ vector of diagonal entries of the variance-covariance matrix associated with the _Dx1_ output from the first position. Since diagonals are reported, the output from the function `me(hyp, meanfunc, covfunc, X, y, xs)` reports the marginal distribution of the expected marginal effect of each explanatory variable evaluated at test point _xs_.  
+**Outputs**: Two _Dx1_ vectors where _D_ is the number of columns in _X_. The first output is the _Dx1_ vector of expected marginal effects w.r.t. explanatory variables _k = 1, ..., D_ calculated with respect to test input _xs_. The second output is the _Dx1_ vector of diagonal entries of the variance-covariance matrix associated with the _Dx1_ output from the first position. Since diagonals are reported, the output from the function `me(hyp, meanfunc, covfunc, X, y, xs)` reports the marginal distribution of the expected marginal effect of each explanatory variable evaluated at test point _xs_.  
 
 ### 1.1.2 _function [ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)_  
 
 The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, ..., M_ in _Xs_. Since calling `me()` on a single test point _xs_ produces two _Dx1_ vectors, calling `pme()` on _MxD_ test data _Xs_ produces two _DxM_ vectors. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).   
 
-*Inputs*:
+**Inputs**:
 * _hyp_
 * _meanfunc_
 * _covfunc_
@@ -44,14 +44,14 @@ The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, .
 * _y_
 * _Xs_ (optional)  
 
-*Outputs*: Two _DxM_ vectors. The jth column of the first output is the _Dx1_ vector of epxected marginal effects associated with the jth test point _Xs(j,:)_. The jth column of the second output is the _Dx1_ vector of variances associated with the expected marginal effect of each of the _D_ explanatory variables evaluated at test point _Xs(j,:)_.  
+**Outputs**: Two _DxM_ vectors. The jth column of the first output is the _Dx1_ vector of epxected marginal effects associated with the jth test point _Xs(j,:)_. The jth column of the second output is the _Dx1_ vector of variances associated with the expected marginal effect of each of the _D_ explanatory variables evaluated at test point _Xs(j,:)_.  
 
 
 ### 1.1.3 _function [gmm_mean, gmm_mean_var, cred95] = ame(hyp, meanfunc, covfunc, X, y, Xs)_  
 
 Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics across the test inputs using general method of moments. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).  
 
-*Inputs*:
+**Inputs**:
 * _hyp_
 * _meanfunc_
 * _covfunc_
@@ -59,13 +59,13 @@ Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics acr
 * _y_
 * _Xs_ (optional)  
 
-*Outputs*: A _Dx1_ vector where the kth entry is the expected marginal effect of the kth explanatory variable from a `pme()` call averaged across the _M_ test inputs in _Xs_ from the `pme()` call (i.e., a mean of marginal effects), a _Dx1_ vector of the sample variance corresponding to the first output (i.e., the variance of marginal effects), and a _Dx2_ matrix of 95% credible intervals calculated for each dimension. When Xs is omitted from the input, calculations are made on the training sample so that _Xs = X_.
+**Outputs**: A _Dx1_ vector where the kth entry is the expected marginal effect of the kth explanatory variable from a `pme()` call averaged across the _M_ test inputs in _Xs_ from the `pme()` call (i.e., a mean of marginal effects), a _Dx1_ vector of the sample variance corresponding to the first output (i.e., the variance of marginal effects), and a _Dx2_ matrix of 95% credible intervals calculated for each dimension. When Xs is omitted from the input, calculations are made on the training sample so that _Xs = X_.
 
 ### 1.1.4 _function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)_  
 
 The function `plotme()` is the main plotting function of the package. Other plotting functions such as `gridme()` (see below) depend on it. Returns a plot object that is already labeled appropriately. When the final two inputs are omitted, then calculations are made with respect to the training sample so that _Xs = X_. When _Xs_ is specified but the final function input is omitted, calculations are made with respect to predictions over test inputs _Xs_. When any value is passed to the final (eighth) function input, then `plotme()` omits some information for the plot so it can be customized for plotting interactions. The last function input is used whenever `gridme()` is passed inputs indicating interactions are of interest.
 
-*Inputs*:
+**Inputs**:
 * _d_
 * _hyp_
 * _meanfunc_
@@ -75,14 +75,14 @@ The function `plotme()` is the main plotting function of the package. Other plot
 * _Xs_ (optional)  
 * _~_ (optional)
 
-*Outputs*: A plot object.
+**Outputs**: A plot object.
 
 
 ### 1.1.5 _function [ plt, gridX ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, interaction_indices)_  
 
 The function `gridme()` automates some of the prediction process. The function `gridme()` calls `plotme()` and generates gridded data for the dth dimension with other explanatory variables held at their mean. The grid will have _numpsteps_ points. When _interaction_indices_ is specified, then all dimensions in the vector _interaction_indices = [k1, k2, ...]_ will be gridded when making predictions.
 
-*Inputs*:
+**Inputs**:
 * _d_
 * _hyp_
 * _meanfunc_
@@ -92,7 +92,7 @@ The function `gridme()` automates some of the prediction process. The function `
 * _Xs_ (optional)  
 * _~_ (optional)
 
-*Outputs*: A plot object.
+**Outputs**: A plot object.
 
 
 ## 1.2 Package demo
