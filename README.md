@@ -129,7 +129,7 @@ This section provides plots from `gridme()` which demonstrate the method more th
 
 ## 2.1 Univariate functions
 
-Gaussian process regression models applied to functions with a single input are equivalent when specified with either the isotropic squared exponential covariance function (_{@covSEiso}_ in _gpml_) the automatic relevance determination squared exponential covariance function (_{@covSEard}_ in _gpml_).
+Gaussian process regression models applied to functions with a single input are equivalent when specified with either the isotropic squared exponential covariance function (_{@covSEiso}_ in _gpml_) or the automatic relevance determination squared exponential covariance function (_{@covSEard}_ in _gpml_).
 
 ### 2.1.2 Linear, quadratic, and cubic expansions
 
@@ -138,6 +138,8 @@ Gaussian process regression models applied to functions with a single input are 
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
 ## 2.2 Bivariate functions with independent normal covariates
+
+With two function inputs, models trained using the isotropic squared exponential covariance function (_{@covSEiso}_ in _gpml_) and the automatic relevance determination squared exponential covariance function (_{@covSEard}_ in _gpml_) are distinct. In the former, covariates share a length scale. In the latter, each covariate has its own length scale. Independent normal covariates in the data generating process mean that there isn't covariance between inputs to help with learning. Model performance in this section will not be as good as in Section 2.3 when the bivariate functions are generated with jointly normal covariates.
 
 ### 2.2.1 Linear
 
@@ -160,6 +162,8 @@ Gaussian process regression models applied to functions with a single input are 
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_ard.png)
 
 ## 2.3 Bivariate functions with jointly normal covariates
+
+Jointly normal covariates in the data generating process should imply that covariance between inputs can help with learning a better model fit. Model performance in this section should be superior to Section 2.2 where the bivariate functions are generated with independent normal covariates.
 
 ### 2.3.1 Linear
 
