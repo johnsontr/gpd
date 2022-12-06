@@ -175,5 +175,20 @@ Jointly normal covariates in the data generating process should imply that covar
 
 ### 2.3.1 A linear bivariate function with jointly normal covariates
 
+| covSEiso - X1 | covSEiso - X2 |
+:---:|:---:
+img | img
+
+| covSEard - X1 | covSEard - X2 |
+:---:|:---:
+img | img
+
 ### 2.3.2 A linear bivariate function with interactions between jointly normal covariates
 
+| covSEiso - X1 | covSEiso - X2 |
+:---:|:---:
+img | img
+
+| covSEard - X1 | covSEard - X2 |
+:---:|:---:
+img | img
