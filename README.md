@@ -11,6 +11,7 @@ This package implements a routine to estimate Gaussian process regression model 
 This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/).   
 1. [GPIRT: A Gaussian Process Model for Item Response Theory](https://proceedings.mlr.press/v124/duck-mayr20a.html)
 2. [Inference in Gaussian Process Models for Political Science](https://jbduckmayr.com/working-papers/inference-in-gp-models/inference-in-gp-models.pdf)   
+
 JB has implemented routines from these two papers with _R_ packages [gpirt](https://github.com/duckmayr/gpirt) and [gpmss](https://github.com/duckmayr/gpmss).
 
 [Herb Susmann](https://herbsusmann.com/) also has applications of derivatives of Gaussian processes on his blog.
