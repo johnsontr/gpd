@@ -1,59 +1,59 @@
-# gpd - Gaussian process derivatives for marginal effects.
+# gpd - Gaussian process derivatives for marginal effects
 
-Uses MATLAB and gpml-matlab-v3.6-2015-07-07.
+For gpml-matlab-v3.6-2015-07-07.
 
-# Usage
+# 1. Usage
 
-## Package functions
+## 1.1 Package functions
 This section describes how to use package functions and provides a demo for general usage.
 
-### me
+### 1.1.1 me
 
-### pme
+### 1.1.2 pme
 
-### ame
+### 1.1.3 ame
 
-### plotme
+### 1.1.4 plotme
 
-### gridme
+### 1.1.5 gridme
 
-## Package demo
+## 1.2 Package demo
 
-# Simulations
+# 2. Simulations
 
 The remainder produces plots which verify that the method is working correctly.
 
-## Univariate functions
+## 2.1 Univariate functions
 
-### covSEiso = covSEard
+### 2.1.2 covSEiso = covSEard
 
 | Linear | Quadratic | Cubic |
 :---:|:---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
-## Bivariate functions
+## 2.2 Bivariate functions
 
-### covSEiso
+### 2.2.1 covSEiso
 
-#### Bivariate linear function
+#### 2.2.1.1 Bivariate linear function
 | X1 | X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_iso.png)
 
-#### Bivariate linear function with interactions
+#### 2.2.1.2 Bivariate linear function with interactions
 | X1 | X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_iso.png)
 
 
-### covSEard
+### 2.2.2 covSEard
 
-#### Bivariate linear function
+#### 2.2.2.2 Bivariate linear function
 | X1 | X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_ard.png)
 
-#### Bivariate linear function with interactions
+#### 2.2.2.2 Bivariate linear function with interactions
 | X1 | X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_interaction_x2_ard.png)
