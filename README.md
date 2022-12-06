@@ -4,7 +4,10 @@
 * _GNU Octave_ versions 3.2.x and higher **or** _MATLAB_ versions 7.x and higher
 * _gpml-matlab-v3.6-2015-07-07_
 
-This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's nnotes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021.
+This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021.
+
+
+This method has other applications in engineering and the natural sciences, all of which cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper (from [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252))
 
 This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/). 
 
@@ -13,7 +16,6 @@ This method has been implemented in political science in a [published paper](htt
 2. [December 1, 2020 - Conditioning on Gaussian Process Derivative Observations](https://herbsusmann.com/2020/12/01/conditioning-on-gaussian-process-derivative-observations/)
 3. [December 11, 2020 - Derivative Gaussian Processes in Stan](https://herbsusmann.com/2020/12/11/derivative-gaussian-processes-in-stan/)
 
-This method has other applications in engineering and the natural sciences, all of which cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper (from [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252))
 
 # 1. Using the _gpd_ package
 
