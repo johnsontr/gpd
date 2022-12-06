@@ -1,8 +1,21 @@
 # gpd - Gaussian process derivatives for marginal effects
 
-For gpml-matlab-v3.6-2015-07-07.
+*Dependencies*: 
+* _GNU Octave_ versions 3.2.x and higher **or** _MATLAB_ versions 7.x and higher
+* _gpml-matlab-v3.6-2015-07-07_
 
-# 1. Usage
+This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's nnotes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021.
+
+This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/). 
+
+[Herb Susmann](https://herbsusmann.com/) has some applications of derivatives of Gaussian processes on his blog.
+1. [July 7, 2020 - Derivatives of a Gaussian Process](https://herbsusmann.com/2020/07/06/gaussian-process-derivatives/)
+2. [December 1, 2020 - Conditioning on Gaussian Process Derivative Observations](https://herbsusmann.com/2020/12/01/conditioning-on-gaussian-process-derivative-observations/)
+3. [December 11, 2020 - Derivative Gaussian Processes in Stan](https://herbsusmann.com/2020/12/11/derivative-gaussian-processes-in-stan/)
+
+This method has other applications in engineering and the natural sciences, all of which cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper (from [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252))
+
+# 1. Using the _gpd_ package
 
 This section describes how to use package functions and provides a demo for general usage.
 
@@ -108,7 +121,7 @@ In this subsection, I demonstrate general usage based on a simple test case. I c
 
 # 2. Simulations
 
-This section provides plots from `gridme()` that demonstrates the method of estimating marginal effects from Gaussian process regression models moreso than the package itself. In particular, the plots for data generating processes with interactions between explanatory variables show that the method demonstrates tremendous flexibility when fitting marginal effects that may vary w.r.t. to other explanatory variables. 
+This section provides plots from `gridme()` which demonstrate the method more than the _gpd_ package itself. In particular, the plots for data generating processes with interactions between explanatory variables show that the method demonstrates tremendous flexibility when fitting marginal effects that may vary w.r.t. to other explanatory variables. 
 
 ## 2.1 Univariate functions
 
