@@ -49,7 +49,7 @@ This package assumes MAP estimates are used, but there is nothing to preclude th
 
 Note how _trainX_ and _trainy_ are used for learning model hyperparameters above but all function calls use _X_ and _y_. Normalized inputs help with learning length scales. The normalized training inputs for _X_ are _trainX_ and normalized training outputs for _y_ are _trainy_. The _gpd_ package assumes that _non-normalized_** training inputs are used for all functions.
 
-### 1.1.1 _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_  
+### 1.1.1 `[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)`
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
@@ -63,7 +63,7 @@ Note how _trainX_ and _trainy_ are used for learning model hyperparameters above
 
 **Description**: The function `me()` calculates the _marginal effect_ of a single test point. Core functionality of the package relies on the _me()_ function. For any test point xs, it calculates the _Dx1_ vector of expected marginal effects with respect to each epxlanatory variable _k = 1, ..., D_ and the _Dx1_ vector of variances associated with the expected marginal effect. The _Dx1_ vector of variances in (2) is pulled from the diagonal of the variance-covariance matrix associated with (1).
 
-### 1.1.2 _[ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)_  
+### 1.1.2 `[ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)`
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
