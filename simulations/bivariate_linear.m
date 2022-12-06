@@ -44,18 +44,31 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-bivariate_linear_iso_x1 = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+[ bivariate_linear_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b1*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
+
 
 % Save the grid plot
-saveas(bivariate_linear_iso_x1, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_iso_x1.png")
+saveas(bivariate_linear_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_x1_iso.png")
 close;
 
 d=2;
 numsteps=500;
-bivariate_linear_iso_x2 = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+[ bivariate_linear_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b2*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
 
 % Save the grid plot
-saveas(bivariate_linear_iso_x2, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_iso_x2.png")
+saveas(bivariate_linear_x2_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_x2_iso.png")
 close;
 
 %% covSEard
@@ -81,16 +94,28 @@ hyp_ard = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-bivariate_linear_ard_x1 = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y);
+[ bivariate_linear_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b1*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
 
 % Save the grid plot
-saveas(bivariate_linear_ard_x1, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_ard_x1.png")
+saveas(bivariate_linear_x1_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_x1_ard.png")
 close;
 
 d=2;
 numsteps=500;
-bivariate_linear_ard_x2 = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y);
+[ bivariate_linear_x2_ard, gridX] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b2*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
 
 % Save the grid plot
-saveas(bivariate_linear_ard_x2, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_ard_x2.png")
+saveas(bivariate_linear_x2_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_x2_ard.png")
 close;

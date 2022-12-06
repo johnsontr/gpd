@@ -43,7 +43,13 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-univariate_linear_iso = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+[ univariate_linear_iso, gridX] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b1*ones(size(gridX,1),1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|')
+hold off;
+
 
 % Save the grid plot
 saveas(univariate_linear_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\univariate_linear_iso.png")

@@ -17,7 +17,6 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             plot(min(xlim),h1(d),'*')
             text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
             xlim([min(X(:,d)), max(X(:,d))])
-            hold off;
             legend('95% credible region', ...
                 'Sample marginal effects', ...
                 'Mean of sample marginal effects')
@@ -36,7 +35,7 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs)
             plot(Xs(:,d), g1(d,:)', '.')
             xlabel('X')
             ylabel('Marginal effect \partial Y \\ \partial X')
-            plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
+            %plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
             plot(min(xlim),h1(d),'*')
             text(min(xlim),h1(d),{num2str(h1(d))},'VerticalAlignment','top','HorizontalAlignment','left')
             hold off;

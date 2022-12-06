@@ -44,10 +44,17 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-univariate_cubic_iso = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+[ univariate_cubic_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+hold on;
+plot(gridX(:,d), b1 + (2*b2)*gridX(:,d) + (3*b3)*gridX(:,d).^2, ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
 
 % Save the grid plot
 saveas(univariate_cubic_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\univariate_cubic_iso.png")
+close;
 
 %% covSEard
 
