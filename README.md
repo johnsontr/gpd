@@ -11,7 +11,8 @@ All functions rely on having already trained a Gaussian process regression model
 
 ```hyp = minimize_v2(initial_hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, trainX, trainy);```
 
-Note how _trainX_ and _trainy_ are used instead of X and y for calling `me()`. Learning hyperparameters requires normalized inputs to help with learning length scales. The normalized training inputs _X_ is _trainX_, and the normalized training outputs _y_ is _trainy_. Once model parameters are learned, prediction occurs on the un-normalized training inputs. 
+Note how _trainX_ and _trainy_ are used instead of X and y for calling `me()`. Learning hyperparameters requires normalized inputs to help with learning length scales. The normalized training inputs _X_ is _trainX_, and the normalized training outputs _y_ is _trainy_. Once model parameters are learned, this package requires the _non-normalized_** training inputs _(X,y)_.
+
 
 ### 1.1.1 _function [ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_  
 
