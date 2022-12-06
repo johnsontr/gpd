@@ -141,7 +141,7 @@ Gaussian process regression models applied to functions with a single input are 
 
 With two function inputs, models trained using the isotropic squared exponential covariance function (_{@covSEiso}_ in _gpml_) and the automatic relevance determination squared exponential covariance function (_{@covSEard}_ in _gpml_) are distinct. In the former, covariates share a length scale. In the latter, each covariate has its own length scale. Independent normal covariates in the data generating process mean that there isn't covariance between inputs to help with learning. Model performance in this section will not be as good as in Section 2.3 when the bivariate functions are generated with jointly normal covariates.
 
-### 2.2.1 Linear
+### 2.2.1 A linear function with independent normal covariates
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -151,7 +151,7 @@ With two function inputs, models trained using the isotropic squared exponential
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_ard.png)
 
-### 2.2.2 Linear with interactions
+### 2.2.2 A linear function with interactions between independent normal covariates
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -165,7 +165,7 @@ With two function inputs, models trained using the isotropic squared exponential
 
 Jointly normal covariates in the data generating process should imply that covariance between inputs can help with learning a better model fit. Model performance in this section should be superior to Section 2.2 where the bivariate functions are generated with independent normal covariates.
 
-### 2.3.1 Linear
+### 2.3.1 A linear bivariate function with jointly normal covariates
 
-### 2.3.2 Linear with interactions
+### 2.3.2 A linear bivariate function with interactions between jointly normal covariates
 
