@@ -92,7 +92,7 @@ The function `gridme()` automates some of the prediction process. The function `
 * _Xs_ (optional)  
 * _~_ (optional)
 
-**Outputs**: A plot object.
+**Outputs**: A plot object and the gridded used to generate the plot.
 
 
 ## 1.2 Package demo
