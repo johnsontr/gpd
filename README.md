@@ -16,7 +16,7 @@ This method has been implemented in political science in a [published paper](htt
 
 JB has implemented routines from these two papers with _R_ packages [gpirt](https://github.com/duckmayr/gpirt) and [gpmss](https://github.com/duckmayr/gpmss).
 
-[Herb Susmann](https://herbsusmann.com/) has some applications of derivatives of Gaussian processes on his blog.
+[Herb Susmann](https://herbsusmann.com/) also has applications of derivatives of Gaussian processes on his blog.
 1. [July 7, 2020 - Derivatives of a Gaussian Process](https://herbsusmann.com/2020/07/06/gaussian-process-derivatives/)
 2. [December 1, 2020 - Conditioning on Gaussian Process Derivative Observations](https://herbsusmann.com/2020/12/01/conditioning-on-gaussian-process-derivative-observations/)
 3. [December 11, 2020 - Derivative Gaussian Processes in Stan](https://herbsusmann.com/2020/12/11/derivative-gaussian-processes-in-stan/)
@@ -132,9 +132,9 @@ This section provides plots from `gridme()` which demonstrate the method more th
 
 ## 2.1 Univariate functions
 
-### 2.1.2 Linear, quadratic, and cubic expansions
+Gaussian process regression models applied to functions with a single input are equivalent when specified with either the isotropic squared exponential covariance function (_{@covSEiso}_ in _gpml_) the automatic relevance determination squared exponential covariance function (_{@covSEard}_ in _gpml_).
 
-Gaussian process regression models applied to functions with a single input are equivalent when specified with either covSEiso or covSEard.
+### 2.1.2 Linear, quadratic, and cubic expansions
 
 | Linear | Quadratic | Cubic |
 :---:|:---:|:---:
