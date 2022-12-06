@@ -43,7 +43,7 @@ Note how _trainX_ and _trainy_ are used instead of X and y for calling `me()`. L
 
 ### 1.1.1 _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_  
 
-Core functionality of the package relies on the _me()_ function. For any test point xs, it calculates:  
+The function `me()`calculates the _marginal effect_ of a single test point. Core functionality of the package relies on the _me()_ function. For any test point xs, it calculates:  
 
 1. the _Dx1_ vector of expected marginal effects with respect to each epxlanatory variable _k = 1, ..., D_, and  
 2. the _Dx1_ vector of variances associated with the expected marginal effect.  
@@ -62,7 +62,7 @@ The _Dx1_ vector of variances in (2) is pulled from the diagonal of the variance
 
 ### 1.1.2 _[ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)_  
 
-The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, ..., M_ in _Xs_. Since calling `me()` on a single test point _xs_ produces two _Dx1_ vectors, calling `pme()` on _MxD_ test data _Xs_ produces two _DxM_ vectors. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).   
+The function `pme()` will _predict marginal effects_ for a set of test points. The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, ..., M_ in _Xs_. Since calling `me()` on a single test point _xs_ produces two _Dx1_ vectors, calling `pme()` on _MxD_ test data _Xs_ produces two _DxM_ vectors. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).   
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
@@ -76,7 +76,7 @@ The function calls `me(hyp, meanfunc, covfunc, X, y, Xs)` for each row _j = 1, .
 
 ### 1.1.3 _[gmm_mean, gmm_mean_var, cred95] = ame(hyp, meanfunc, covfunc, X, y, Xs)_  
 
-Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics across the test inputs using general method of moments. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).  
+The function `ame()` calculates _average marginal effects_ for all explanatory variables with respect to a set of test points. Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics across the test inputs using general method of moments. When _Xs_ is omitted from the function call, then the function assumes that marginal effect calculations are made with respect to the training inputs (i.e., _Xs = X_).  
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
@@ -90,7 +90,7 @@ Calls `pme(hyp, meanfunc, covfunc, X, y, Xs)` to generate summary statistics acr
 
 ### 1.1.4 _plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)_  
 
-The function `plotme()` is the main plotting function of the package. Other plotting functions such as `gridme()` (see below) depend on it. Returns a plot object that is already labeled appropriately. When the final two inputs are omitted, then calculations are made with respect to the training sample so that _Xs = X_. When _Xs_ is specified but the final function input is omitted, calculations are made with respect to predictions over test inputs _Xs_. When any value is passed to the final (eighth) function input, then `plotme()` omits some information for the plot so it can be customized for plotting interactions. The last function input is used whenever `gridme()` is passed inputs indicating interactions are of interest.
+The function `plotme()` _plots marginal effects_ for explanatory variable _d_. The function `plotme()` is the main plotting function of the package. Other plotting functions such as `gridme()` (see below) depend on it. Returns a plot object that is already labeled appropriately. When the final two inputs are omitted, then calculations are made with respect to the training sample so that _Xs = X_. When _Xs_ is specified but the final function input is omitted, calculations are made with respect to predictions over test inputs _Xs_. When any value is passed to the final (eighth) function input, then `plotme()` omits some information for the plot so it can be customized for plotting interactions. The last function input is used whenever `gridme()` is passed inputs indicating interactions are of interest.
 
 **Inputs**:
 * _d_ - The explanatory variable _d_ in _{ 1, ..., D }_ for which plots will be made
@@ -106,7 +106,7 @@ The function `plotme()` is the main plotting function of the package. Other plot
 
 ### 1.1.5 _[ plt, gridX ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, interaction_indices)_  
 
-The function `gridme()` automates some of the prediction process. The function `gridme()` calls `plotme()` and generates gridded data for the dth dimension with other explanatory variables held at their mean. The grid will have _numpsteps_ points. When _interaction_indices_ is specified, then all dimensions in the vector _interaction_indices = [k1, k2, ...]_ will be gridded when making predictions.
+The function `gridme()` creates _gridded plots of marginal effects_ for explanatory variable _d_. The function `gridme()` automates some of the prediction process. The function `gridme()` calls `plotme()` and generates gridded data for the dth dimension with other explanatory variables held at their mean. The grid will have _numpsteps_ points. When _interaction_indices_ is specified, then all dimensions in the vector _interaction_indices = [k1, k2, ...]_ will be gridded when making predictions.
 
 **Inputs**:
 * _d_ - The explanatory variable _d_ in _{ 1, ..., D }_ for which plots will be made. Gridding on dimension _d_ creates _numsteps_ observations over _min(X(:,d)) - 2*sqrt(var(X(:,d)))_ and _max(X(:,d)) + 2*sqrt(var(X(:,d)))_ with other explanatory variables held at their mean.
@@ -123,7 +123,6 @@ The function `gridme()` automates some of the prediction process. The function `
 ## 1.2 Package demo
 
 In this subsection, I demonstrate general usage based on a simple test case. I create data with a univariate data generating process having known properties and demonstrate each function's usage.
-
 
 
 # 2. Simulations
