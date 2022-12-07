@@ -47,7 +47,6 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
             % Don't plot sample marginal effects (yet).
             % Prediction
             [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);
-            [h1, ~, ~] = ame(hyp, meanfunc, covfunc, X, y);         % sample
             hold on;
             plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
             g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
