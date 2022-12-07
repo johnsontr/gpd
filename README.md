@@ -1,7 +1,7 @@
 # gpd - Gaussian process derivatives for marginal effects
 
 **Package Dependencies**: 
-* _GNU Octave_ versions 3.2.x and higher **or** _MATLAB_ versions 7.x and higher
+* _GNU Octave_ version 3.2.x+ or _MATLAB_ versions 7.x+
 * _gpml-matlab-v3.6-2015-07-07_
 
 **Package Summary**: This package adds functionality that allows calculating marginal effects from Gaussian process regression models trained in the MATLAB package _gpml_. To my knowledge, no other MATLAB package provides this functionality. Only `{@meanZero}` mean functions and `{@covSEiso}` or `{@covSEard}` covariance functions are supported at this time.  Future functionality will include support for:
