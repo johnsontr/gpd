@@ -176,6 +176,19 @@ Jointly normal covariates in the data generating process should imply that covar
 
 ### 2.3.1 A linear bivariate function with jointly normal covariates
 
+#### 2.3.1.1 Positive correlation (\rho = 0.9)
+
+| covSEiso - X1 | covSEiso - X2 |
+:---:|:---:
+img | img
+
+| covSEard - X1 | covSEard - X2 |
+:---:|:---:
+img | img
+
+#### 2.3.1.2 Negative correlation (\rho = -0.9)
+
+
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
 img | img
@@ -186,6 +199,8 @@ img | img
 
 ### 2.3.2 A linear bivariate function with interactions between jointly normal covariates
 
+#### 2.3.2.1 Positive correlation (\rho = 0.9)
+
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
 img | img
@@ -193,3 +208,15 @@ img | img
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
 img | img
+
+#### 2.3.2.2 Negative correlation (\rho = -0.9)
+
+| covSEiso - X1 | covSEiso - X2 |
+:---:|:---:
+img | img
+
+| covSEard - X1 | covSEard - X2 |
+:---:|:---:
+img | img
+
+
