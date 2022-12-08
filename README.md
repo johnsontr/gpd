@@ -146,9 +146,17 @@ Gaussian process regression models applied to functions with a single input are 
 :---:|:---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
+```math
+X \sim N(0,1)
+```
+
 ## 2.2 Bivariate functions with independent normal covariates
 
 With two function inputs, models trained using the isotropic squared exponential covariance function (`{@covSEiso}` in _gpml_) and the automatic relevance determination squared exponential covariance function (`{@covSEard}` in _gpml_) are distinct. In the former, covariates share a length scale. In the latter, each covariate has its own length scale. Independent normal covariates in the data generating process mean that there isn't covariance between inputs to help with learning. Model performance in this section will not be as good as in Section 2.3 when the bivariate functions are generated with jointly normal covariates.
+
+```math
+X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \right)
+```
 
 ### 2.2.1 A linear function with independent normal covariates
 
@@ -180,7 +188,7 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 
 ### 2.3.1 A linear bivariate function with jointly normal covariates
 
-#### 2.3.1.1 Positive correlation (\rho = 0.9)
+#### 2.3.1.1 Positive correlation
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -190,7 +198,7 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x2_ard.png)
 
-#### 2.3.1.2 Negative correlation (\rho = -0.9)
+#### 2.3.1.2 Negative correlation
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -202,7 +210,7 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 
 ### 2.3.2 A linear bivariate function with interactions between jointly normal covariates
 
-#### 2.3.2.1 Positive correlation (\rho = 0.9)
+#### 2.3.2.1 Positive correlation
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -212,7 +220,7 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x2_ard.png)
 
-#### 2.3.1.2 Negative correlation ($\rho = -0.9$)
+#### 2.3.1.2 Negative correlation
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
