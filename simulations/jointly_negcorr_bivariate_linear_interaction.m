@@ -8,7 +8,10 @@ close all;
 
 N=100; % Number of observations in the training data.
 D=2; % Number of covariates.
-X = normrnd(0,1,N,D);
+mu = [0 0];
+Sigma = [1 0.9; 0.9 1];
+rng('default')  % For reproducibility
+X = mvnrnd(mu,Sigma,N);
 sn = 0.1;
 hyp.lik = log(sn);
 noise = normrnd(0,sn,N,1);
@@ -44,7 +47,7 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-[ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
+[ jointly_negcorr_bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
 [dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -58,12 +61,12 @@ hold off;
 
 
 % Save the grid plot
-saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
+saveas(jointly_negcorr_bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\jointly_negcorr_bivariate_linear_interaction_x1_iso.png")
 close;
 
 d=2;
 numsteps=500;
-[ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
+[ jointly_negcorr_bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
 [dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -76,7 +79,7 @@ plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
 hold off;
 
 % Save the grid plot
-saveas(bivariate_linear_interaction_x2_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x2_iso.png")
+saveas(jointly_negcorr_bivariate_linear_interaction_x2_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\jointly_negcorr_bivariate_linear_interaction_x2_iso.png")
 close;
 
 %% covSEard
@@ -102,7 +105,7 @@ hyp_ard = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-[ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
+[ jointly_negcorr_bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
 [dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -116,12 +119,12 @@ hold off;
 
 
 % Save the grid plot
-saveas(bivariate_linear_interaction_x1_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_ard.png")
+saveas(jointly_negcorr_bivariate_linear_interaction_x1_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\jointly_negcorr_bivariate_linear_interaction_x1_ard.png")
 close;
 
 d=2;
 numsteps=500;
-[ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
+[ jointly_negcorr_bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
 [dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -134,5 +137,5 @@ plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
 hold off;
 
 % Save the grid plot
-saveas(bivariate_linear_interaction_ard_x2, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x2_ard.png")
+saveas(jointly_negcorr_bivariate_linear_interaction_ard_x2, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\jointly_negcorr_bivariate_linear_interaction_x2_ard.png")
 close;
