@@ -180,22 +180,21 @@ Jointly normal covariates in the data generating process should imply that covar
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x2_iso.png)
 
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_x2_ard.png)
 
 #### 2.3.1.2 Negative correlation (\rho = -0.9)
 
-
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_x2_iso.png)
 
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_x2_ard.png)
 
 ### 2.3.2 A linear bivariate function with interactions between jointly normal covariates
 
@@ -203,20 +202,20 @@ img | img
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x2_iso.png)
 
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_poscorr_bivariate_linear_interaction_x2_ard.png)
 
-#### 2.3.2.2 Negative correlation (\rho = -0.9)
+#### 2.3.1.2 Negative correlation (\rho = -0.9)
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x1_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x2_iso.png)
 
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
-img | img
+![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x2_ard.png)
 
 
