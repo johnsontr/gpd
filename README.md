@@ -174,6 +174,10 @@ With two function inputs, models trained using the isotropic squared exponential
 
 Jointly normal covariates in the data generating process should imply that covariance between inputs can help with learning a better model fit. Model performance in this section should be superior to Section 2.2 where the bivariate functions are generated with independent normal covariates.
 
+```math
+X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.9 \\ \pm 0.9 & 1 \end{bmatrix} \right)
+```
+
 ### 2.3.1 A linear bivariate function with jointly normal covariates
 
 #### 2.3.1.1 Positive correlation (\rho = 0.9)
