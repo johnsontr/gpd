@@ -52,6 +52,7 @@ hold on;
 plot(gridX(:,d), b1*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
+ylim([-2 5])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
@@ -67,6 +68,7 @@ hold on;
 plot(gridX(:,d), b2*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
+ylim([-2 5])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
@@ -102,6 +104,7 @@ hold on;
 plot(gridX(:,d), b1*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
+ylim([-2 5])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
@@ -116,6 +119,7 @@ hold on;
 plot(gridX(:,d), b2*ones(size(gridX,1), 1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
+ylim([-2 5])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
