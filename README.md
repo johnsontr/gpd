@@ -9,11 +9,13 @@
 2. sums and products of `{@covSEiso}` and `{@covSEard}` covariance functions, and
 3. covariate masking for mean and covariance functions.
 
-**Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
+**Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. The purpose of Andrew's notes seems to be to calculate Taylor series approximations to help improve GP estimates; it does not seem to be used for calculating marginal effects for general inference with GPs. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
 
 This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/). JB has implemented routines from his two GP papers with _R_ packages [gpirt](https://github.com/duckmayr/gpirt) and [gpmss](https://github.com/duckmayr/gpmss).  
 1. [GPIRT: A Gaussian Process Model for Item Response Theory](https://proceedings.mlr.press/v124/duck-mayr20a.html)
 2. [Inference in Gaussian Process Models for Political Science](https://jbduckmayr.com/working-papers/inference-in-gp-models/inference-in-gp-models.pdf)   
+
+![Yehu Chen](https://github.com/yahoochen97) has GP derivatives implemented in some of his repositories, including ![an ordinal extension to the GPIRT model](https://github.com/yahoochen97/OrdGPIRT) made by JB and his co-authors.
 
 [Herb Susmann](https://herbsusmann.com/) also has applications of derivatives of Gaussian processes on his blog.
 1. [July 7, 2020 - Derivatives of a Gaussian Process](https://herbsusmann.com/2020/07/06/gaussian-process-derivatives/)
@@ -36,7 +38,7 @@ This section describes how to use package functions and provides a demo for gene
 This section provides detail for functions in the package. I provide detail for the **_Inputs_** required for each function, the **_Outputs_** expected from each function, and a **_Description_** of what each function does.
 
 There are five functions in the package _gpd_.
-1. _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_
+1. _[ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)_
 2. _[ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)_  
 3. _[gmm_mean, gmm_mean_var, cred95] = ame(hyp, meanfunc, covfunc, X, y, Xs)_ 
 4. _plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)_ 
@@ -44,13 +46,11 @@ There are five functions in the package _gpd_.
 
 All functions rely on having already trained a Gaussian process regression model in _gpml_. In notation below, the input _hyp_ is a struct of the learned hyperparameters from training a Gaussian process regression model. For example,  
 
-```hyp = minimize_v2(initial_hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, trainX, trainy);```
+```hyp = minimize_v2(initial_hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, normalize(X), normalize(y));```
 
 This package assumes MAP estimates are used, but there is nothing to preclude the user from passing HMC estimates for model hyperparameters as long as they have the appropriate _struct_ format. 
 
-Note how _trainX_ and _trainy_ are used for learning model hyperparameters above but all function calls use _X_ and _y_. Normalized inputs help with learning length scales. The normalized training inputs for _X_ are _trainX_ and normalized training outputs for _y_ are _trainy_. The _gpd_ package assumes that _non-normalized_** training inputs are used for all functions.
-
-### 1.1.1 `[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)`
+### 1.1.1 `[ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)`
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
@@ -127,9 +127,24 @@ Note how _trainX_ and _trainy_ are used for learning model hyperparameters above
 **Description**: The function `gridme()` creates _gridded plots of marginal effects_ for explanatory variable _d_. The function `gridme()` automates some of the prediction process. The function `gridme()` calls `plotme()` and generates gridded data for the dth dimension with other explanatory variables held at their mean. The grid will have _numpsteps_ points. When _interaction_indices_ is specified, then all dimensions in the vector _interaction_indices = [k1, k2, ...]_ will be gridded when making predictions. All other dimensions not in _interaction_indices_ will be held at their mean.
 
 
+
+
+
+
+
+
 ## 1.2 Package demo
 
 In this subsection, I demonstrate general usage based on a simple test case. I create data with a univariate data generating process having known properties and demonstrate each function's usage.
+
+
+
+
+
+
+
+
+
 
 
 # 2. Simulations
@@ -140,15 +155,16 @@ This section provides plots from `gridme()` which demonstrate the method more th
 
 Gaussian process regression models applied to functions with a single input are equivalent when specified with either the isotropic squared exponential covariance function (`{@covSEiso}` in _gpml_) or the automatic relevance determination squared exponential covariance function (`{@covSEard}` in _gpml_).
 
+```math
+X \sim N(0,1)
+```
+
 ### 2.1.2 Linear, quadratic, and cubic expansions
 
 | Linear | Quadratic | Cubic |
 :---:|:---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
-```math
-X \sim N(0,1)
-```
 
 ## 2.2 Bivariate functions with independent normal covariates
 
@@ -229,5 +245,35 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x2_ard.png)
+
+## 2.4 Fixed and random effects
+
+### 2.4.1 Univariate functions 
+
+#### 2.4.1.1 A univariate cubic expansion with fixed effects
+
+#### 2.4.1.2 A univariate cubic expansion with random effects
+
+### 2.4.2 Bivariate functions with jointly normal covariances
+
+#### 2.4.2.1 A linear bivariate function with interactions between jointly normal covariates and fixed effects
+
+##### 2.4.2.1.1 Positive correlation
+
+##### 2.4.2.1.2 Negative correlation
+
+#### 2.4.2.2 A linear bivariate function with interactions between jointly normal covariates and random effects
+
+
+## 2.5 Recovering estimates from models with omitted variables
+
+
+## 2.6 Recovering estimates from spatial econometric data generating processes
+
+### 2.6.1 Spatial error model (SEM)
+
+### 2.6.2 Spatial autoregressive (SAR) model
+
+### 2.6.3 STADL Up!
 
 
