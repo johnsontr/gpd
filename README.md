@@ -270,9 +270,11 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 
 ## 2.6 Recovering estimates from spatial econometric data generating processes
 
-### 2.6.1 Spatial error model (SEM)
+### 2.6.1 Spatial error models (SEMs)
 
-### 2.6.2 Spatial autoregressive (SAR) model
+### 2.6.2 Spatial autoregressive (SAR) models
+
+### 2.6.3 Spatial-X models
 
 ### 2.6.3 STADL Up!
 
