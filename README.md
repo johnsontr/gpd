@@ -9,7 +9,7 @@
 2. sums and products of `{@covSEiso}` and `{@covSEard}` covariance functions, and
 3. covariate masking for mean and covariance functions.
 
-**Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
+**Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. The purpose of Andrew's notes seems to be to calculate Taylor series approximations to help improve GP estimates; it does not seem to be used for calculating marginal effects for general inference with GPs. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
 
 This method has been implemented in political science in a [published paper](https://jbduckmayr.com/publication/gpirt/) as well as a [working paper](https://jbduckmayr.com/working-papers/inference-in-gp-models/) by [JBrandon Duck-Mayr](https://jbduckmayr.com/). JB has implemented routines from his two GP papers with _R_ packages [gpirt](https://github.com/duckmayr/gpirt) and [gpmss](https://github.com/duckmayr/gpmss).  
 1. [GPIRT: A Gaussian Process Model for Item Response Theory](https://proceedings.mlr.press/v124/duck-mayr20a.html)
@@ -229,5 +229,35 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 | covSEard - X1 | covSEard - X2 |
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x2_ard.png)
+
+## 2.4 Fixed and random effects
+
+### 2.4.1 Univariate functions 
+
+#### 2.4.1.1 A univariate cubic expansion with fixed effects
+
+#### 2.4.1.2 A univariate cubic expansion with random effects
+
+### 2.4.2 Bivariate functions with jointly normal covariances
+
+#### 2.4.2.1 A linear bivariate function with interactions between jointly normal covariates and fixed effects
+
+##### 2.4.2.1.1 Positive correlation
+
+##### 2.4.2.1.2 Negative correlation
+
+#### 2.4.2.2 A linear bivariate function with interactions between jointly normal covariates and random effects
+
+
+## 2.5 Recovering estimates from models with omitted variables
+
+
+## 2.6 Recovering estimates from spatial econometric data generating processes
+
+### 2.6.1 Spatial error model (SEM)
+
+### 2.6.2 Spatial autoregressive (SAR) model
+
+### 2.6.3 STADL Up!
 
 
