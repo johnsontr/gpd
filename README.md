@@ -174,7 +174,7 @@ With two function inputs, models trained using the isotropic squared exponential
 X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \right)
 ```
 
-### 2.2.1 A linear function with independent normal covariates
+### 2.2.1 A linear bivariate function with independent normal covariates
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
@@ -184,7 +184,7 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & 0 \\ 0
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/bivariate_linear_x2_ard.png)
 
-### 2.2.2 A linear function with interactions between independent normal covariates
+### 2.2.2 A linear bivariate function with interactions between independent normal covariates
 
 | covSEiso - X1 | covSEiso - X2 |
 :---:|:---:
