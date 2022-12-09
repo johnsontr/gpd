@@ -46,6 +46,7 @@ numsteps=500;
 [ univariate_linear_iso, gridX] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
 hold on;
 plot(gridX(:,d), b1*ones(size(gridX,1),1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|')
 hold off;

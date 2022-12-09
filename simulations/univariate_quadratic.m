@@ -47,6 +47,7 @@ numsteps=500;
 [ univariate_quadratic_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
 hold on;
 plot(gridX(:,d), b1+ (2*b2)*gridX(:,d), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
