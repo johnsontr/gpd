@@ -15,6 +15,8 @@ This method has been implemented in political science in a [published paper](htt
 1. [GPIRT: A Gaussian Process Model for Item Response Theory](https://proceedings.mlr.press/v124/duck-mayr20a.html)
 2. [Inference in Gaussian Process Models for Political Science](https://jbduckmayr.com/working-papers/inference-in-gp-models/inference-in-gp-models.pdf)   
 
+![Yehu Chen](https://github.com/yahoochen97) also has GP derivatives implemented in some of his repositories, including ![an ordinal extension to the GPIRT model](https://github.com/yahoochen97/OrdGPIRT) made by JB.
+
 [Herb Susmann](https://herbsusmann.com/) also has applications of derivatives of Gaussian processes on his blog.
 1. [July 7, 2020 - Derivatives of a Gaussian Process](https://herbsusmann.com/2020/07/06/gaussian-process-derivatives/)
 2. [December 1, 2020 - Conditioning on Gaussian Process Derivative Observations](https://herbsusmann.com/2020/12/01/conditioning-on-gaussian-process-derivative-observations/)
