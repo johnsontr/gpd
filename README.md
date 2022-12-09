@@ -36,7 +36,7 @@ This section describes how to use package functions and provides a demo for gene
 This section provides detail for functions in the package. I provide detail for the **_Inputs_** required for each function, the **_Outputs_** expected from each function, and a **_Description_** of what each function does.
 
 There are five functions in the package _gpd_.
-1. _[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)_
+1. _[ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)_
 2. _[ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)_  
 3. _[gmm_mean, gmm_mean_var, cred95] = ame(hyp, meanfunc, covfunc, X, y, Xs)_ 
 4. _plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)_ 
@@ -44,13 +44,11 @@ There are five functions in the package _gpd_.
 
 All functions rely on having already trained a Gaussian process regression model in _gpml_. In notation below, the input _hyp_ is a struct of the learned hyperparameters from training a Gaussian process regression model. For example,  
 
-```hyp = minimize_v2(initial_hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, trainX, trainy);```
+```hyp = minimize_v2(initial_hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, normalize(X), normalize(y));```
 
 This package assumes MAP estimates are used, but there is nothing to preclude the user from passing HMC estimates for model hyperparameters as long as they have the appropriate _struct_ format. 
 
-Note how _trainX_ and _trainy_ are used for learning model hyperparameters above but all function calls use _X_ and _y_. Normalized inputs help with learning length scales. The normalized training inputs for _X_ are _trainX_ and normalized training outputs for _y_ are _trainy_. The _gpd_ package assumes that _non-normalized_** training inputs are used for all functions.
-
-### 1.1.1 `[ mean_vec, diag_var_mat ] = me(hyp, meanfunc, covfunc, X, y, xs)`
+### 1.1.1 `[ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)`
 
 **Inputs**:
 * _hyp_ - Model hyperparameters learned from the parent gpml model
