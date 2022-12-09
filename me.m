@@ -55,7 +55,7 @@ function [ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)
     mean_vec = d_c_X_xs_dxs' .* (Cs \ y); 
 
     % Make the variance-covariance matrix of the marginal effects
-    var_mat = cov_scale_factor * Lambda^-1 - d_c_X_xs_dxs' * inv(Cs) * (-d_c_X_xs_dxs); 
+    var_mat = cov_scale_factor * Lambda^-1 - d_c_X_xs_dxs' * ( inv(Cs) \ (-d_c_X_xs_dxs) ); 
 
     % Only return the diagonals of var_mat, which corresponds to the variance of the marginal distribution of the marginal effects.
     var_vec = diag(var_mat); 
