@@ -127,9 +127,24 @@ This package assumes MAP estimates are used, but there is nothing to preclude th
 **Description**: The function `gridme()` creates _gridded plots of marginal effects_ for explanatory variable _d_. The function `gridme()` automates some of the prediction process. The function `gridme()` calls `plotme()` and generates gridded data for the dth dimension with other explanatory variables held at their mean. The grid will have _numpsteps_ points. When _interaction_indices_ is specified, then all dimensions in the vector _interaction_indices = [k1, k2, ...]_ will be gridded when making predictions. All other dimensions not in _interaction_indices_ will be held at their mean.
 
 
+
+
+
+
+
+
 ## 1.2 Package demo
 
 In this subsection, I demonstrate general usage based on a simple test case. I create data with a univariate data generating process having known properties and demonstrate each function's usage.
+
+
+
+
+
+
+
+
+
 
 
 # 2. Simulations
@@ -140,15 +155,16 @@ This section provides plots from `gridme()` which demonstrate the method more th
 
 Gaussian process regression models applied to functions with a single input are equivalent when specified with either the isotropic squared exponential covariance function (`{@covSEiso}` in _gpml_) or the automatic relevance determination squared exponential covariance function (`{@covSEard}` in _gpml_).
 
+```math
+X \sim N(0,1)
+```
+
 ### 2.1.2 Linear, quadratic, and cubic expansions
 
 | Linear | Quadratic | Cubic |
 :---:|:---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_linear_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_quadratic_iso.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/univariate_cubic_iso.png)
 
-```math
-X \sim N(0,1)
-```
 
 ## 2.2 Bivariate functions with independent normal covariates
 
