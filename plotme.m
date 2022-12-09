@@ -1,54 +1,64 @@
 function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
+% This function generates marginal effect plots.
+%       nargin 6 - If Xs is omitted, then it is assumed that sample marginal effects
+%       are the desired plot.
+%       nargin 7 - If Xs is provided but an eighth argument is not, then
+%       predicted marginal effects as well as sample marginal effects are
+%       plotted.
+%       nargin 8 - If eight arguments are provided, then the plot is for
+%       marginal effects when interactions are suspected, so some of the
+%       plot elements from nargin 7 are excluded so the user can specify
+%       them. For example, sample marginal effects, xlabel, and ylabel are
+%       not included.
 
     switch nargin
-        case 6
-            % Sample
-            [f1, f2] = pme(hyp, meanfunc, covfunc, X, y);
-            hold on;
+
+        case 6 % This case plots sample marginal effects
+            [f1, f2] = pme(hyp, meanfunc, covfunc, X, y);           % sample
             plotSort = sortrows([X(:,d), f1(d,:)', f2(d,:)'], 1);
             f = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
+            hold on;
             plt = fill([plotSort(:,1); flip(plotSort(:,1))], f, [7 7 7]/8);
-            plot(X(:,d), f1(d,:)', 'o')
+            plot(X(:,d), f1(d,:)', 'o')                             % sample
+            hold off;
             xlabel('X')
             ylabel('Marginal effect \partial Y \\ \partial X')
-            plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
             xlim([min(X(:,d)), max(X(:,d))])
             legend('95% credible region', ...
-                'Sample marginal effects', ...
-                'Mean of sample marginal effects')
-        case 7
+                'Sample marginal effects')
+
+        case 7 % This case plots predictions on supplied Xs
             % Prediction
             [f1, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
-            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);            
-            hold on;
+            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);       % predictions     
             plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
             g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
+            hold on;
             plt = fill([plotSort(:,1); flip(plotSort(:,1))], g, [7 7 7]/8);
-            xlim([min(Xs(:,d)), max(Xs(:,d))])
             plot(X(:,d), f1(d,:)', 'o')                             % sample
-            plot(Xs(:,d), g1(d,:)', '.')
+            plot(Xs(:,d), g1(d,:)', '.')                            % predictions
+            hold off;
             xlabel('X')
             ylabel('Marginal effect \partial Y \\ \partial X')
-            plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), 'x')
-            hold off;
+            xlim([min(Xs(:,d)), max(Xs(:,d))])
             legend('95% credible region', ...
                 'Sample marginal effects', ...
                 'Predicted marginal effects')
-        case 8
-            % Don't plot sample marginal effects (yet).
-            % Prediction
-            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);
-            hold on;
+
+        case 8 % This case plots predictions and omits some plot elements to make interaction plots easier to customize
+            % Sample marginal effects and labels should be updated outside
+            % of the plotme() function call when plotting interactions
+            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);       % predictions
             plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
             g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
+            hold on;
             plt = fill([plotSort(:,1); flip(plotSort(:,1))], g, [7 7 7]/8);
-            xlim([min(Xs(:,d)), max(Xs(:,d))])
             plot(Xs(:,d), g1(d,:)', '.')
-            xlabel('X')
-            ylabel('Marginal effect \partial Y \\ \partial X')
             hold off;
+            xlim([min(Xs(:,d)), max(Xs(:,d))])
             legend('95% credible region', ...
                 'Predicted marginal effects')
+
     end
 
 end
