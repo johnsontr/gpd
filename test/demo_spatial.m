@@ -90,6 +90,7 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 % Plot w.r.t. X1 (no relation should be evident since dy/dx1 is a function of (X2,X3))
 d=1;
+plot_d=1;
 numsteps=500;
 [ sar, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
 hold on;
@@ -174,7 +175,7 @@ xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
@@ -190,7 +191,7 @@ xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
@@ -206,7 +207,7 @@ xlabel('X3');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,3), min(ylim) * ones(size(X(:,3),1)), '|');
 hold off;
 
