@@ -39,7 +39,7 @@ function [ plt, gridX ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, inte
                 gridX(:,idx) = gXd; % Overwrite d^th covariate with the grid
             end
 
-            plt = plotme(d, hyp, meanfunc, covfunc, X, y, gridX, 1); % Make the plot
+            plt = plotme(d, hyp, meanfunc, covfunc, X, y, gridX, interaction_indices); % Make the plot
 
     end
 

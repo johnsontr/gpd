@@ -1,4 +1,4 @@
-function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
+function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, interaction_indices)
 % This function generates marginal effect plots.
 %       nargin 6 - If Xs is omitted, then it is assumed that sample marginal effects
 %       are the desired plot.
@@ -48,14 +48,23 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, ~)
         case 8 % This case plots predictions and omits some plot elements to make interaction plots easier to customize
             % Sample marginal effects and labels should be updated outside
             % of the plotme() function call when plotting interactions
-            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);       % predictions
-            plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
+            [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);       % Prediction 
+
+            % For now, assume that interactions will only be between 2 dimensions.
+            % i.e., interaction_indices is only ever a vector [d od]
+            od = interaction_indices(interaction_indices~=d);
+
+            % For interactions, the marginal effect is a function of the
+            % OTHER DIMENSION (od)
+            % Change documentation so that interaction_indices should only
+            % be two dimensions.
+            plotSort = sortrows([Xs(:,od), g1(d,:)', g2(d,:)'], 1); % X axis is other dimension, y axis is dth marginal effect
             g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
             hold on;
             plt = fill([plotSort(:,1); flip(plotSort(:,1))], g, [7 7 7]/8);
-            plot(Xs(:,d), g1(d,:)', '.')
+            plot(Xs(:,od), g1(d,:)', '.')
             hold off;
-            xlim([min(Xs(:,d)), max(Xs(:,d))])
+            xlim([min(Xs(:,od)), max(Xs(:,od))])
             legend('95% credible region', ...
                 'Predicted marginal effects')
 
