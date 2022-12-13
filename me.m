@@ -18,35 +18,20 @@ function [ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)
         Lambda = diag(exp(hyp.cov(1:D)).^2);             % hyp.cov(D+1) is the scale factor
     end
     
-    % Define uninverted C(X) + sn^2 I
-    Cs = (feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N));
-    
-    % Define xs - xi, a 1xD vec, which is N x D
-    dXs = zeros(N,D);
-    for i = 1:N
-        dXs(i,:) = xs - X(i,:);
-    end
-    
-    % Make partial derivative c(xs,X) partial xs, which is DxN
+    % Make the total derivative c(xs,X) w.r.t. xs, which is a DxN matrix
     d_c_xs_X_dxs = zeros(D,N);
     for i = 1:N
-        d_c_xs_X_dxs(:,i) = -(Lambda^-1) * (xs' - X(i,:)') * feval(covfunc{:}, hyp.cov, X(i,:), xs);
+        d_c_xs_X_dxs(:,i) = (Lambda^-1) * (X(i,:) - xs)' * feval(covfunc{:}, hyp.cov, X(i,:), xs);
     end
-    
-    %
-    %
-    % Make the mean function and the covariance function from the components defined above.
-    %
-    %
 
-    % mean function
-    mean_vec = - Lambda^-1 * dXs' * (feval(covfunc{:}, hyp.cov, X, xs) .* (Cs \ y));
+    % Make the total derivative of the mean at xs
+    mean_vec = d_c_xs_X_dxs * ((feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N)) \ y);
 
-    % vcov function
-    if str2num(feval(covfunc{:})) == 2
-        var_mat = Lambda^-1 * exp(hyp.cov(2))^2 - d_c_xs_X_dxs * inv(Cs) * (-d_c_xs_X_dxs');
-    else % If it's not covSEiso, then it's covSEard
-        var_mat = Lambda^-1 * exp(hyp.cov(D+1))^2 - d_c_xs_X_dxs * inv(Cs) * (-d_c_xs_X_dxs');
+    % The vcov matrix of the total derivative of the mean at xs
+    if str2num(feval(covfunc{:})) == 2      % If covfunc = {@covSEiso}
+        var_mat = (exp(hyp.cov(2))^2) * (Lambda^-1) - d_c_xs_X_dxs * inv(feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N)) * d_c_xs_X_dxs';
+    else                                    % If covfunc = {@covSEard}
+        var_mat = (exp(hyp.cov(D+1))^2) * (Lambda^-1) - d_c_xs_X_dxs * inv(feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N)) * d_c_xs_X_dxs';
     end
     
     % Only return the diagonals of var_mat, which corresponds to the
