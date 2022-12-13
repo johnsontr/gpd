@@ -100,7 +100,7 @@ xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
 hold off;
 
@@ -116,7 +116,7 @@ xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
@@ -132,10 +132,9 @@ xlabel('X3');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-20 20])
 plot(X(:,3), min(ylim) * ones(size(X(:,3),1)), '|');
 hold off;
-
 
 % Save the grid plot
 % saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
@@ -211,10 +210,10 @@ ylim([-15 20])
 plot(X(:,3), min(ylim) * ones(size(X(:,3),1)), '|');
 hold off;
 
-
 % Save the grid plot
 % saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
 % close;
+
 
 
 
