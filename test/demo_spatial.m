@@ -48,7 +48,12 @@ hyp.lik = log(sn);
 noise = normrnd(0,sn,N,1);
 b0 = 3; b1 = 1; b2 = 4; b3 = -2;
 rho = 0.5; % Moderately strong positive spatial correlation
-y = (eye(N) - rho*stddub) \ (b0 * ones(N,1) + X * [b1 b2 b3]' + noise);
+
+% Separable DGP
+% y = (eye(N) - rho*stddub) \ (b0 * ones(N,1) + X * [b1 b2 b3]' + noise);
+% Non-separable DGP
+% The sign of marginal effect of X1 depends on the sign of b2*X2 + b3*X3
+y = (eye(N) - rho*stddub) \ (b0 * ones(N,1) + b1*X(:,1) .* ( X(:,2:3) * [b2 b3]') + noise);
 
 % Normalize training data
 train_X = normalize(X); % Normalize training data
@@ -83,13 +88,30 @@ p.length = 100;
 % Learn MAP parameter estimates
 hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
 
+% Plot w.r.t. X1 (no relation should be evident since dy/dx1 is a function of (X2,X3))
+d=1;
+numsteps=500;
+[ sar, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+hold on;
+[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
+plot(X(:,d), dydx(d,:), 'o', 'DisplayName', "Sample marginal effects")
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+xlabel('X1');
+ylabel('Marginal effect \partial Y \\ \partial X1')
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+ylim([-15 20])
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
+
+% Plot w.r.t. X2
 d=1;
 numsteps=500;
 [ sar, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
-[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
-plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
@@ -98,9 +120,101 @@ ylim([-15 20])
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
+% Plot w.r.t. X3
+d=1;
+numsteps=500;
+[ sar, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 3]);
+hold on;
+[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
+plot(X(:,3), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+xlabel('X3');
+ylabel('Marginal effect \partial Y \\ \partial X1')
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+ylim([-15 20])
+plot(X(:,3), min(ylim) * ones(size(X(:,3),1)), '|');
+hold off;
+
 
 % Save the grid plot
 % saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
 % close;
+
+
+%% covSEard
+
+% Specify the GPR model
+meanfunc = {@meanZero};
+covfunc = {@covSEard};
+ls = 1/2;
+sf = 1;
+hyp.cov = log([ ls*ones(D,1); sf ]);
+hyp.mean = [];
+likfunc = {@likGauss};
+prior.lik = { {@priorTransform,@exp,@exp,@log,{@priorGamma,0.01,10}} }; % Gamma prior on the noise
+for k = 1:D+1
+    prior.cov{k} = {@priorTransform,@exp,@exp,@log,{@priorGamma,1,1}}; % Gamma prior on D length scales and 1 scale factor
+end
+inffunc = {@infPrior, @infExact, prior}; 
+p.method = 'LBFGS'; 
+p.length = 100;
+
+% Learn MAP parameter estimates
+hyp_ard = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
+
+% Plot w.r.t. X1 (no relation should be evident since dy/dx1 is a function of (X2,X3))
+d=1;
+numsteps=500;
+[ sar, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y);
+hold on;
+[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
+plot(X(:,d), dydx(d,:), 'o', 'DisplayName', "Sample marginal effects")
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+xlabel('X1');
+ylabel('Marginal effect \partial Y \\ \partial X1')
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+ylim([-15 20])
+plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+hold off;
+
+% Plot w.r.t. X2
+d=1;
+numsteps=500;
+[ sar, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
+hold on;
+[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
+plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+xlabel('X2');
+ylabel('Marginal effect \partial Y \\ \partial X1')
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+ylim([-15 20])
+plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
+hold off;
+
+% Plot w.r.t. X3
+d=1;
+numsteps=500;
+[ sar, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 3]);
+hold on;
+[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
+plot(X(:,3), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
+%plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
+xlabel('X3');
+ylabel('Marginal effect \partial Y \\ \partial X1')
+legend('Location', 'southoutside');
+legend('AutoUpdate', 'off');
+ylim([-15 20])
+plot(X(:,3), min(ylim) * ones(size(X(:,3),1)), '|');
+hold off;
+
+
+% Save the grid plot
+% saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
+% close;
+
 
 
