@@ -68,21 +68,22 @@ close all;
 %           S_r (W) * X_r is an n x n matrix times an n x 1 column vector
 %               So S_r (W) * X_r is an n x 1 vector
 
-N=100; % Number of observations in the training data.
-D=2; % Number of covariates.
+N=400; % Number of observations in the training data.
+D=3; % Number of covariates.
 X = normrnd(0,1,N,D);
 sn = 0.1;
 hyp.lik = log(sn);
 noise = normrnd(0,sn,N,1);
-b0 = -D; % For this example, the constant of regression is just negative the number of covariates.
-b1 = 1; b2 = 2; b3 = 3;
-y = b0 * ones(N,1) + X * [b1 b2]' + b3*(X(:,1) .* X(:,2))  + noise; % Marginal effects are b1 = 1, b2 = 2, ..., bD = D
+b0 = 3; b1 = 1; b4 = 2; b3 = -2;
+y = b0 * ones(N,1) + X(:,1) * [b1 b2 b3]' + noise;
 train_X = normalize(X); % Normalize training data
 train_y = normalize(y); % Normalize training data
 
-% True DGP: y = -2 + (X1) + 2*(X2) + 3*(X1*X2) + e;
-% True ME for X1: dy/dx1 = 1 + 3*(X2)
-% True ME for X2: dy/dx2 = 2 + 3*(X1)
+
+
+% True DGP: y = 3 + (X1) * ( 4*(X2) - 2*(X3) ) + e;
+% True ME for X1: dy/dx1 = 
+% True ME for X2: dy/dx2 = 
 
 %% covSEiso
 
