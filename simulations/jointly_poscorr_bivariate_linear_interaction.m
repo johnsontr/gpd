@@ -3,6 +3,7 @@
 clear;
 clc;
 close all;
+rng(1);
 
 %% Make DGP
 
@@ -56,7 +57,7 @@ xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-15 15])
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
@@ -76,7 +77,7 @@ xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X2')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-15 15])
 plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
 hold off;
 
@@ -116,7 +117,7 @@ xlabel('X2');
 ylabel('Marginal effect \partial Y \\ \partial X1')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-15 15])
 plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
 hold off;
 
@@ -136,7 +137,7 @@ xlabel('X1');
 ylabel('Marginal effect \partial Y \\ \partial X2')
 legend('Location', 'southoutside');
 legend('AutoUpdate', 'off');
-ylim([-15 20])
+ylim([-15 15])
 plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
 hold off;
 
