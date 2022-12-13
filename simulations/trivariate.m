@@ -109,7 +109,7 @@ d=1;
 numsteps=500;
 [ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
-[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X2');
@@ -129,7 +129,7 @@ d=2;
 numsteps=500;
 [ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
 hold on;
-[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X1');
@@ -169,7 +169,7 @@ d=1;
 numsteps=500;
 [ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
-[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X2');
@@ -189,7 +189,7 @@ d=2;
 numsteps=500;
 [ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
 hold on;
-[dydx, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
+[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
 plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
 xlabel('X1');
