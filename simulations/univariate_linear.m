@@ -53,7 +53,6 @@ legend('AutoUpdate', 'off');
 plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|')
 hold off;
 
-
 % Save the grid plot
 saveas(univariate_linear_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\univariate_linear_iso.png")
 close;

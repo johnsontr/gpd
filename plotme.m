@@ -1,7 +1,5 @@
 function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, plot_Xdim)
 % This function generates marginal effect plots.
-%       nargin 6 - If Xs is omitted, then it is assumed that sample marginal effects
-%       are the desired plot.
 %       nargin 7 - If Xs is provided but an eighth argument is not, then
 %       predicted marginal effects as well as sample marginal effects are
 %       plotted.
@@ -13,22 +11,7 @@ function plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, plot_Xdim)
 
     switch nargin
 
-        case 6 % This case plots sample marginal effects
-            [f1, f2] = pme(hyp, meanfunc, covfunc, X, y);           % sample
-            plotSort = sortrows([X(:,d), f1(d,:)', f2(d,:)'], 1);
-            f = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
-            hold on;
-            plt = fill([plotSort(:,1); flip(plotSort(:,1))], f, [7 7 7]/8);
-            plot(X(:,d), f1(d,:)', 'o')                             % sample
-            hold off;
-            xlabel('X')
-            ylabel('Marginal effect \partial Y \\ \partial X')
-            xlim([min(X(:,d)), max(X(:,d))])
-            legend('95% credible region', ...
-                'Sample marginal effects')
-
-        case 7 % This case plots predictions on supplied Xs
-            % Prediction
+        case 7 % When plot_Xdim isn't specified
             [f1, ~] = pme(hyp, meanfunc, covfunc, X, y);            % sample
             [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);       % predictions     
             plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
