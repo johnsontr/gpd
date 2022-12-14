@@ -16,4 +16,7 @@ function [ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)
         [ MEs(:,i), VARs(:,i) ] = me(hyp, meanfunc, covfunc, X, y, Xs(i,:));
     end
 
+    MEs = MEs';
+    VARs = VARs';
+
 end

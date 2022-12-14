@@ -1,4 +1,4 @@
-function [ plt, Z ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, plot_Xdim)
+function [ plt, Xs ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, plot_Xdim)
 % This function automates some of the prediction for generating marginal
 % effects plots with plotme(). Grids are automatically generated for
 % plotme() argument Xs given the covariate of interest d.
@@ -12,24 +12,24 @@ function [ plt, Z ] = gridme(d, numsteps, hyp, meanfunc, covfunc, X, y, plot_Xdi
     [~,D] = size(X);
     gridX = cell(1, D);
     
-    % Make the grid over any index specified in interaction_indices
+    % Grid each covariate separately
     for idx = 1:D
         range = max(X(:,idx)) - min(X(:,idx)) + 4*sqrt(var(X(:,idx)));
         gXd = ((min(X(:,idx)) - 2*sqrt(var(X(:,idx)))):range/(numsteps-1):(max(X(:,idx)) + 2*sqrt(var(X(:,idx)))))';
         gridX{idx} = gXd; % Overwrite d^th covariate with the grid
     end
 
-    % Make the grid Z
+    % Make combined grid
     gCopy = gridX;
     [gCopy{:}] = ndgrid(gridX{:});
-    Z = cell2mat(cellfun(@(m)m(:),gCopy,'UniformOutput',false));
+    Xs = cell2mat(cellfun(@(m)m(:),gCopy,'UniformOutput',false));
 
+    % Plot using the grid
     switch nargin 
         case 7 % If plot_Xdim isn't specified, plot X dim is dimension d
-            plt = plotme(d, hyp, meanfunc, covfunc, X, y, Z);
-        case 8 % Grid everything
-            plt = plotme(d, hyp, meanfunc, covfunc, X, y, Z, plot_Xdim);
-        %case 9 % Only grid certain dimensions
+            plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs);
+        case 8 % Plot w.r.t. plot_Xdim instead of dimension d
+            plt = plotme(d, hyp, meanfunc, covfunc, X, y, Xs, plot_Xdim);
     end
 
 end

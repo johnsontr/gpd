@@ -44,7 +44,7 @@ p.length = 100;
 hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
 
 d=1;
-numsteps=500;
+numsteps=100;
 [ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, 2);
 hold on;
 [dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
