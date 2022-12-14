@@ -45,7 +45,7 @@ hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-[ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
+[ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, 2);
 hold on;
 [dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -65,7 +65,7 @@ close;
 
 d=2;
 numsteps=500;
-[ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, [1 2]);
+[ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, 1);
 hold on;
 [dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -105,7 +105,7 @@ hyp_ard = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X,
 
 d=1;
 numsteps=500;
-[ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
+[ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, 2);
 hold on;
 [dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
 plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
@@ -125,7 +125,7 @@ close;
 
 d=2;
 numsteps=500;
-[ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, [1 2]);
+[ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, 1);
 hold on;
 [dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
 plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
