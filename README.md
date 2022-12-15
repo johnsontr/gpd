@@ -6,8 +6,9 @@
 
 **Package Summary**: This package adds functionality that allows calculating marginal effects from Gaussian process regression models trained in the MATLAB package _gpml_. To my knowledge, no other MATLAB package provides this functionality. Only `{@meanZero}` mean functions and `{@covSEiso}` or `{@covSEard}` covariance functions are supported at this time.  Future functionality will include support for:
 1. `{@meanConst}`, `{@meanLinear}`, and `{@meanSum, {@meanLinear, @meanConst}}` mean functions,
-2. sums and products of `{@covSEiso}` and `{@covSEard}` covariance functions, and
-3. covariate masking for mean and covariance functions.
+2. sums of `{@covSEiso}` and `{@covSEard}` covariance functions, and
+3. covariate masking for mean and covariance functions.  
+The first feature I will add is sums of `{@covSEiso}` and `{@covSEard}`, and the second feature I will add is supporting for masking in the covariance functions. Mean function and mean function masking is the last feature that will be added.
 
 **Package Descripton**: This package implements a routine to estimate Gaussian process regression model derivatives found in notes by a former Ph.D. student Andrew McHutchon that was associated with [Carl Edward Rasmussen's machine learning group](https://mlg.eng.cam.ac.uk/carl/). Andrew McHutchon's Cambridge website is no longer operational, so these notes were accessed through [the most recent archived version available from the Wayback Machine](https://web.archive.org/web/20210225174148/https://mlg.eng.cam.ac.uk/mchutchon/DifferentiatingGPs.pdf). Andrew McHutchon's notes are dated April 17, 2013, and the most recent Wayback Machine archive is from February 25, 2021. The purpose of Andrew's notes seems to be to calculate Taylor series approximations to help improve GP estimates; it does not seem to be used for calculating marginal effects for general inference with GPs. A number of applications in engineering and the natural sciences cite Andrew McHutchon's unpublished working paper. Citations of Andrew McHutchon's "Differentiating Gaussian Processes" working paper can be found on [SemanticScholar](https://www.semanticscholar.org/paper/Differentiating-Gaussian-Processes-McHutchon/3ad0725b8dd4eb32ca2a27f25d522741293a5252).
 
