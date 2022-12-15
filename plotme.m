@@ -15,7 +15,6 @@ function plt = plotme(d, d_plot, hyp, meanfunc, covfunc, X, y, Xs)
             [f1, f2] = pme(hyp, meanfunc, covfunc, X, y);        % sample
             [g1, g2] = pme(hyp, meanfunc, covfunc, X, y, Xs);    % predictions     
 
-
             plotSort = sortrows([Xs(:,d), g1(d,:)', g2(d,:)'], 1);
 
             g = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
@@ -32,10 +31,6 @@ function plt = plotme(d, d_plot, hyp, meanfunc, covfunc, X, y, Xs)
             legend('95% credible region', ...
                 'Sample marginal effects', ...
                 'Predicted marginal effects')
-
-
-
-
 
 
 
