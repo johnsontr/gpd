@@ -3,6 +3,7 @@ function [ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)
 % point xs. This is a support function for pme.
 %       nargin 5 - Generate estimates with w.r.t. the training sample.
 %       nargin otherwise - Generate estimates w.r.t. test points Xs   
+% Returns a 1xD vector and a 1xD vector.
 
 % NOTE: Since this is built specifically for {@meanZero} Gaussian
 % processes, the meanfunc function input is unused. The function input is 
@@ -26,6 +27,9 @@ function [ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)
 
     % Make the total derivative of the mean at xs
     mean_vec = d_c_xs_X_dxs * ((feval(covfunc{:}, hyp.cov, X) + exp(hyp.lik)^2 * eye(N)) \ y);
+    % Reshape mean_vec to be a 1xD row with entry d being the d^th marginal
+    % effect
+    mean_vec = mean_vec';
 
     % The vcov matrix of the total derivative of the mean at xs
     if str2num(feval(covfunc{:})) == 2      % If covfunc = {@covSEiso}
@@ -36,6 +40,6 @@ function [ mean_vec, var_vec ] = me(hyp, meanfunc, covfunc, X, y, xs)
     
     % Only return the diagonals of var_mat, which corresponds to the
     % variance of the marginal distribution of the marginal effects.
-    var_vec = diag(var_mat);
+    var_vec = diag(var_mat)';
 
 end

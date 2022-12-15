@@ -10,13 +10,10 @@ function [ MEs, VARs ] = pme(hyp, meanfunc, covfunc, X, y, Xs)
     end
 
     [M,D] = size(Xs);       % [number of test points, number of covariates]
-    MEs = zeros(D,M);       % Preallocate
-    VARs = zeros(D,M);      % Preallocate
+    MEs = zeros(M,D);       % Preallocate
+    VARs = zeros(M,D);      % Preallocate
     for i = 1:M
-        [ MEs(:,i), VARs(:,i) ] = me(hyp, meanfunc, covfunc, X, y, Xs(i,:));
+        [ MEs(i,:), VARs(i,:) ] = me(hyp, meanfunc, covfunc, X, y, Xs(i,:)); % This expects row vectors
     end
-
-    MEs = MEs';
-    VARs = VARs';
 
 end
