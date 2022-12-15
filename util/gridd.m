@@ -1,68 +1,23 @@
-function [ Xs, X, gXs ] = gridd(X, grid_vec, numsteps)
+function [ Xs, X ] = gridd(X, grid_vec, numsteps)
 
-
-    % nargout 3 ==> grid the WHOLE SPACE, not just dimensions one by one.
-    % This gets extremely large very fast and should only be used for
-    % generating toy examples.
-    %
-    % If numsteps = 100 and D = 2, then gXs is a 10,000 x 2 matrix.
-    % If numsteps = 100 and D = 3, then gXs is a 1,000,000 x 3 matrix.
-    % If numsteps = 100 and D = 4, then gXs is a 100,000,000 x 4 matrix.
-    % If numsteps = 100 and D = 5, then gXs is a 10,000,0000,000 x 5 matrix
-    % 
-    % If numsteps = 500 and D = 2, then gXs is a 250,000 x 2 matrix.
-    % If numsteps = 500 and D = 3, then gXs is a 125,000,000 x 3 matrix.
-    % If numsteps = 500 and D = 4, then gXs is a 62,500,000,000 x 4 matrix.
-    %
-    % If a dimension is held constant at its mean, then a column is added
-    % by the number of rows would not be increased.
-    %
-    % The 
+% Grid dimensions individually, not the whole space
 
     [~,D] = size(X);
-    
+    gridX = zeros(numsteps, D);
 
-    if nargout > 2
-        % Grid the whole space, which is different than gridding each
-        % dimension. This gets VERY large VERY fast.
-        % 
-
-        gridX = cell(1, D);
-
-        num_rows_gXs = numsteps^length(grid_vec); 
-        % This is how long you need to make the num_rows_gXs x 1 column 
-        % vector for dimensions held at their means.
-    
-        % Grid each covariate in grid_vec
-
-        entryCounter = 1;
-        for idx = 1:D
-            if ismember(idx, grid_vec)
-                % Grid the dimension to be plus / minus 2 standard 
-                % deviations from max / min value the column data takes.
-                lowerbound = min(X(:,idx)) - 2*sqrt(var(X(:,idx));
-                upper_bound = max(X(:,idx)) + 2*sqrt(var(X(:,idx)));
-                range = upper_bound - lower_bound;
-                gXd = lower_bound:range/(numsteps-1):upper_bound;
-                gridX{entryCounter} = gXd;
-                entryCounter = entryCounter+1;
-            end
+    for j = 1:D
+        if ismember(j, grid_vec)
+            % Grid the dimension to be plus / minus 2 standard 
+            % deviations from max / min value the column data takes.
+            lower_bound = min(X(:,idx)) - 2*sqrt(var(X(:,idx));
+            upper_bound = max(X(:,idx)) + 2*sqrt(var(X(:,idx)));
+            range = upper_bound - lower_bound;
+            gXd = lower_bound:range/(numsteps-1):upper_bound;
+            gridX(:,j) = gXd;
+        else 
+            gridX(:,j) = repmat( mean(X(:,j)), 1, D );
         end
-
-        gCopy = gridX;
-        [gCopy{:}] = ndgrid(gridX{:});
-        Xs = cell2mat(cellfun(@(m)m(:),gCopy,'UniformOutput',false));
-
-        grelper = cell(1,D);
-        for idx = 1:D
-            if ismember(idx, grid_vec)
-                grelper{idx} = 
-            end
-        end
-        for tix in setdiff(1:D, grid_vec)
-            % These are the indices that need to be inserted
-
-        end
-
+    end
+            
 end
 
