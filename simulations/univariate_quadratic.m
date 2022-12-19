@@ -43,15 +43,20 @@ p.length = 100;
 % Learn MAP parameter estimates
 hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
 
+% Set parameters for plotting
 d=1;
+d_Xaxis = d;
 numsteps=500;
-[ univariate_quadratic_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y);
+Xs = gridd(X, d, numsteps);
+
+% Generate marginal effects plot
+univariate_quadratic_iso  = plotme(d, d_Xaxis, hyp_iso, meanfunc, covfunc, X, y, Xs);
+
+% Add the true marginal effect to the plot
 hold on;
-plot(gridX(:,d), b1+ (2*b2)*gridX(:,d), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-ylim([-15 15])
-legend('Location', 'southoutside');
-legend('AutoUpdate', 'off');
-plot(X(:,d), min(ylim) * ones(size(X(:,d),1)), '|');
+ylim([-15 15]) % Set more reasonable y-axis limits
+plot(Xs(:,d_Xaxis), b1+ (2*b2)*Xs(:,d_Xaxis), ':', 'Color', [0.8500 0.3250 0.0980],'LineWidth', 2, 'DisplayName', "True marginal effect");
+plot(X(:,d_Xaxis), min(ylim) * ones(size(X(:,d_Xaxis),1)), '|', 'Color', [0 0.4470 0.7410], 'LineWidth', 2, 'HandleVisibility','off') % Show observations
 hold off;
 
 % Save the grid plot

@@ -43,41 +43,32 @@ p.length = 100;
 % Learn MAP parameter estimates
 hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
 
-d=1;
-numsteps=100;
-[ bivariate_linear_interaction_x1_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, 2);
-hold on;
-[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
-plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
-plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-xlabel('X2');
-ylabel('Marginal effect \partial Y \\ \partial X1')
-legend('Location', 'southoutside');
-legend('AutoUpdate', 'off');
-ylim([-15 15])
-plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
+% covSEiso d_me=1, d_Xaxis=2
+d=1; % Set parameters for plotting
+d_Xaxis = 2;
+numsteps=500;
+Xs = gridd(X, [2], numsteps);
+bivariate_linear_interaction_x1_iso  = plotme(d, d_Xaxis, hyp_iso, meanfunc, covfunc, X, y, Xs); % Generate marginal effects plot
+hold on; % Add the true marginal effect to the plot
+ylim([-15 15]) % Set more reasonable y-axis limits
+plot(Xs(:,d_Xaxis), b1 + b3*Xs(:,d_Xaxis), ':', 'Color', [0.8500 0.3250 0.0980],'LineWidth', 2, 'DisplayName', "True marginal effect");
+plot(X(:,d_Xaxis), min(ylim) * ones(size(X(:,d_Xaxis),1)), '|', 'Color', [0 0.4470 0.7410], 'LineWidth', 2, 'HandleVisibility','off') % Show observations
 hold off;
-
-
 % Save the grid plot
 saveas(bivariate_linear_interaction_x1_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_iso.png")
 close;
 
+% covSEiso d_me=2, d_Xaxis=1
 d=2;
+d_Xaxis=1;
 numsteps=500;
-[ bivariate_linear_interaction_x2_iso, gridX ] = gridme(d, numsteps, hyp_iso, meanfunc, covfunc, X, y, 1);
-hold on;
-[dydx, ~] = pme(hyp_iso, meanfunc, covfunc, X, y);            % sample
-plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
-plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-xlabel('X1');
-ylabel('Marginal effect \partial Y \\ \partial X2')
-legend('Location', 'southoutside');
-legend('AutoUpdate', 'off');
-ylim([-15 15])
-plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
+Xs = gridd(X, [1], numsteps);
+bivariate_linear_interaction_x2_iso  = plotme(d, d_Xaxis, hyp_iso, meanfunc, covfunc, X, y, Xs); % Generate marginal effects plot
+hold on; % Add the true marginal effect to the plot
+ylim([-15 15]) % Set more reasonable y-axis limits
+plot(Xs(:,d_Xaxis), b2 + b3*Xs(:,d_Xaxis), ':', 'Color', [0.8500 0.3250 0.0980],'LineWidth', 2, 'DisplayName', "True marginal effect");
+plot(X(:,d_Xaxis), min(ylim) * ones(size(X(:,d_Xaxis),1)), '|', 'Color', [0 0.4470 0.7410], 'LineWidth', 2, 'HandleVisibility','off') % Show observations
 hold off;
-
 % Save the grid plot
 saveas(bivariate_linear_interaction_x2_iso, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x2_iso.png")
 close;
@@ -103,41 +94,33 @@ p.length = 100;
 % Learn MAP parameter estimates
 hyp_ard = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, train_X, train_y);
 
-d=1;
+% covSEard d_me=1, d_Xaxis=2
+d=1; % Set parameters for plotting
+d_Xaxis = 2;
 numsteps=500;
-[ bivariate_linear_interaction_x1_ard, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, 2);
-hold on;
-[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
-plot(X(:,2), dydx(1,:), 'o', 'DisplayName', "Sample marginal effects")
-plot(gridX(:,2), b1 + b3*gridX(:,2), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-xlabel('X2');
-ylabel('Marginal effect \partial Y \\ \partial X1')
-legend('Location', 'southoutside');
-legend('AutoUpdate', 'off');
-ylim([-15 15])
-plot(X(:,2), min(ylim) * ones(size(X(:,2),1)), '|');
+Xs = gridd(X, [2], numsteps);
+bivariate_linear_interaction_x1_ard  = plotme(d, d_Xaxis, hyp_ard, meanfunc, covfunc, X, y, Xs); % Generate marginal effects plot
+hold on; % Add the true marginal effect to the plot
+ylim([-15 15]) % Set more reasonable y-axis limits
+plot(Xs(:,d_Xaxis), b1 + b3*Xs(:,d_Xaxis), ':', 'Color', [0.8500 0.3250 0.0980],'LineWidth', 2, 'DisplayName', "True marginal effect");
+plot(X(:,d_Xaxis), min(ylim) * ones(size(X(:,d_Xaxis),1)), '|', 'Color', [0 0.4470 0.7410], 'LineWidth', 2, 'HandleVisibility','off') % Show observations
 hold off;
-
-
 % Save the grid plot
 saveas(bivariate_linear_interaction_x1_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x1_ard.png")
 close;
 
+% covSEard d_me=2, d_Xaxis=1
 d=2;
+d_Xaxis=1;
 numsteps=500;
-[ bivariate_linear_interaction_ard_x2, gridX ] = gridme(d, numsteps, hyp_ard, meanfunc, covfunc, X, y, 1);
-hold on;
-[dydx, ~] = pme(hyp_ard, meanfunc, covfunc, X, y);            % sample
-plot(X(:,1), dydx(2,:), 'o', 'DisplayName', "Sample marginal effects")
-plot(gridX(:,1), b2 + b3*gridX(:,1), ':', 'LineWidth', 2, 'DisplayName', "True marginal effect");
-xlabel('X1');
-ylabel('Marginal effect \partial Y \\ \partial X2')
-legend('Location', 'southoutside');
-legend('AutoUpdate', 'off');
-ylim([-15 15])
-plot(X(:,1), min(ylim) * ones(size(X(:,1),1)), '|');
+Xs = gridd(X, [1], numsteps);
+bivariate_linear_interaction_x2_ard  = plotme(d, d_Xaxis, hyp_ard, meanfunc, covfunc, X, y, Xs); % Generate marginal effects plot
+hold on; % Add the true marginal effect to the plot
+ylim([-15 15]) % Set more reasonable y-axis limits
+plot(Xs(:,d_Xaxis), b2 + b3*Xs(:,d_Xaxis), ':', 'Color', [0.8500 0.3250 0.0980],'LineWidth', 2, 'DisplayName', "True marginal effect");
+plot(X(:,d_Xaxis), min(ylim) * ones(size(X(:,d_Xaxis),1)), '|', 'Color', [0 0.4470 0.7410], 'LineWidth', 2, 'HandleVisibility','off') % Show observations
 hold off;
-
 % Save the grid plot
-saveas(bivariate_linear_interaction_ard_x2, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x2_ard.png")
+saveas(bivariate_linear_interaction_x2_ard, "C:\Users\johnsontr\Documents\GitHub\gpd\simulations\results\bivariate_linear_interaction_x2_ard.png")
 close;
+

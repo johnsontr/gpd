@@ -29,33 +29,42 @@ p.length = 100;
 hyp_iso = minimize_v2(hyp, @gp, p, inffunc, meanfunc, covfunc, likfunc, normalize(X), normalize(y));
 
 % Make a grid
-d=1;
+d_me=2;
+d_Xaxis=2;
 numsteps = 100;
-Xs = gridd(X, d, numsteps); % Grid the first dimension
+Xs = gridd(X, 2, numsteps); % Grid the first dimension
 
 %
 % gpd package
 %
 
-[sme1, sme2] = pme(hyp, meanfunc, covfunc, X, y);        % sample
-[pme1, pme2] = pme(hyp, meanfunc, covfunc, X, y, Xs);    % predictions 
+% Calculate sample marginal effects
+[sme1, ~] = pme(hyp, meanfunc, covfunc, X, y);        
+% Calculate marginal effects at unobserved locations
+[pme1, pme2] = pme(hyp, meanfunc, covfunc, X, y, Xs);
 
-% Make the error bars
-plotSort = sortrows([Xs(:,d), pme1(:,d), pme2(:,d)], 1);
-pred_f = [plotSort(:,2)-1.96*sqrt(plotSort(:,3)); flip(plotSort(:,2)+1.96*sqrt(plotSort(:,3)))];
+% Define the credible region for predicted marginal effects
+pred_f = [pme1(:,d_me)-1.96*sqrt(pme2(:,d_me)); flip(pme1(:,d_me)+1.96*sqrt(pme2(:,d_me)))]; 
 
 % Plotting
 hold on;
-plt = fill([plotSort(:,1); flip(plotSort(:,1))], pred_f, [7 7 7]/8);
-plot(X(:,d), sme1(:,d), 'o')     % sample marginal effects
-plot(Xs(:,d), pme1(:,d), '.')    % predicted marginal effects
+plt = fill([Xs(:,d_Xaxis); flip(Xs(:,d_Xaxis))], pred_f, [7 7 7]/8); % plot the credible region for predicted marginal effects
+plot(X(:,d_Xaxis), sme1(:,d_me), 'o', 'Color', [1 0 0]) % plot sample marginal effects
+plot(Xs(:,d_Xaxis), pme1(:,d_me), '.', 'Color', [0.9290 0.6940 0.1250]) % plot predicted marginal effects
 hold off;
 
-% Labeling
-xlabel('X')
-ylabel('Marginal effect \partial Y \\ \partial X')
-xlim([min(Xs(:,d)), max(Xs(:,d))])
-legend('95% credible region', ...
-    'Sample marginal effects', ...
-    'Predicted marginal effects')
+% Axis limits
+xlim([min(Xs(:,d_Xaxis)), max(Xs(:,d_Xaxis))]) % Use the x limits of the errors bars
+% Don't set a ylim
+
+% Labeling and legend location
+xlabel(strcat('X',num2str(d_Xaxis)))
+ylabel(strcat('Marginal effect \partial Y \\ \partial X', num2str(d_me)))
+
+% Legend location
+legend('Location', 'southoutside');
+legend('95% credible region for predictions', 'Sample marginal effects', 'Predicted marginal effects')
+
+
+
 
