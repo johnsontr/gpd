@@ -25,9 +25,33 @@ This method has been implemented in political science in a [published paper](htt
 
 
 ## Table of Contents
-* A
-* B
-* C
+* [1 Using the _gpd_ package](https://github.com/johnsontr/gpd#1-using-the-gpd-package)
+
+* [1.1 Package functions](https://github.com/johnsontr/gpd#11-package-functions)
+* [1.1.1 _me()_](https://github.com/johnsontr/gpd#111--mean_vec-var_vec---mehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.2 _pme()_](https://github.com/johnsontr/gpd#112--mes-vars---pmehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.3 _ame()_](https://github.com/johnsontr/gpd#113-gmm_mean-gmm_mean_var-cred95--amehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.4 _plotme()_](https://github.com/johnsontr/gpd#114-plt--plotmed-hyp-meanfunc-covfunc-x-y-xs-)
+* [1.1.5 _gridme()_](https://github.com/johnsontr/gpd#115--plt-gridx---gridmed-numsteps-hyp-meanfunc-covfunc-x-y-interaction_indices)
+
+* [1.2 Package demo](https://github.com/johnsontr/gpd#12-package-demo)
+
+* [2 Simulations](https://github.com/johnsontr/gpd#2-simulations)
+
+* [2.1 Univariate functions](https://github.com/johnsontr/gpd#21-univariate-functions)
+* [2.1.1 Linear, quadratic, and cubic expansions](https://github.com/johnsontr/gpd#212-linear-quadratic-and-cubic-expansions)
+
+* [2.2 Bivariate functions with independent normal covariates](https://github.com/johnsontr/gpd#22-bivariate-functions-with-independent-normal-covariates)
+* [2.2.1 A linear bivariate function with independent normal covariates](https://github.com/johnsontr/gpd#221-a-linear-bivariate-function-with-independent-normal-covariates)
+* [2.2.2 A linear bivariate function with interactions between independent normal covariates](https://github.com/johnsontr/gpd#222-a-linear-bivariate-function-with-interactions-between-independent-normal-covariates)
+
+* [2.3 Bivariate functions with jointly normal covariates](https://github.com/johnsontr/gpd#23-bivariate-functions-with-jointly-normal-covariates)
+* [2.3.1 A linear bivariate function with jointly normal covariates](https://github.com/johnsontr/gpd#231-a-linear-bivariate-function-with-jointly-normal-covariates)
+* [2.3.1.1 Positive correlation](https://github.com/johnsontr/gpd#2311-positive-correlation)
+* [2.3.1.2 Negative correlation](https://github.com/johnsontr/gpd#2312-negative-correlation)
+* [2.3.2 A linear bivariate function with interactions between jointly normal covariates](https://github.com/johnsontr/gpd#232-a-linear-bivariate-function-with-interactions-between-jointly-normal-covariates)
+* [2.3.2.1 Positive correlation](https://github.com/johnsontr/gpd#2321-positive-correlation)
+* [2.3.2.2 Positive correlation](https://github.com/johnsontr/gpd#2312-negative-correlation-1)
 
 
 # 1. Using the _gpd_ package
@@ -177,7 +201,7 @@ Gaussian process regression models applied to functions with a single input are 
 X \sim N(0,1)
 ```
 
-### 2.1.2 Linear, quadratic, and cubic expansions
+### 2.1.1 Linear, quadratic, and cubic expansions
 
 | Linear | Quadratic | Cubic |
 :---:|:---:|:---:
