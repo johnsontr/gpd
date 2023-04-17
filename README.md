@@ -28,11 +28,11 @@ This method has been implemented in political science in a [published paper](htt
 * [1 Using the _gpd_ package](https://github.com/johnsontr/gpd#1-using-the-gpd-package)
 
 * [1.1 Package functions](https://github.com/johnsontr/gpd#11-package-functions)
-** [1.1.1 _me()_](https://github.com/johnsontr/gpd#111--mean_vec-var_vec---mehyp-meanfunc-covfunc-x-y-xs)
-** [1.1.2 _pme()_](https://github.com/johnsontr/gpd#112--mes-vars---pmehyp-meanfunc-covfunc-x-y-xs)
-** [1.1.3 _ame()_](https://github.com/johnsontr/gpd#113-gmm_mean-gmm_mean_var-cred95--amehyp-meanfunc-covfunc-x-y-xs)
-** [1.1.4 _plotme()_](https://github.com/johnsontr/gpd#114-plt--plotmed-hyp-meanfunc-covfunc-x-y-xs-)
-** [1.1.5 _gridme()_](https://github.com/johnsontr/gpd#115--plt-gridx---gridmed-numsteps-hyp-meanfunc-covfunc-x-y-interaction_indices)
+* [1.1.1 _me()_](https://github.com/johnsontr/gpd#111--mean_vec-var_vec---mehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.2 _pme()_](https://github.com/johnsontr/gpd#112--mes-vars---pmehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.3 _ame()_](https://github.com/johnsontr/gpd#113-gmm_mean-gmm_mean_var-cred95--amehyp-meanfunc-covfunc-x-y-xs)
+* [1.1.4 _plotme()_](https://github.com/johnsontr/gpd#114-plt--plotmed-hyp-meanfunc-covfunc-x-y-xs-)
+* [1.1.5 _gridme()_](https://github.com/johnsontr/gpd#115--plt-gridx---gridmed-numsteps-hyp-meanfunc-covfunc-x-y-interaction_indices)
 
 * [1.2 Package demo](https://github.com/johnsontr/gpd#12-package-demo)
 
