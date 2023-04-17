@@ -247,36 +247,6 @@ X \sim N \left( \begin{pmatrix} 0 \\ 0 \end{pmatrix}, \begin{bmatrix} 1 & \pm 0.
 :---:|:---:
 ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x1_ard.png) | ![](https://github.com/johnsontr/gpd/blob/main/simulations/results/jointly_negcorr_bivariate_linear_interaction_x2_ard.png)
 
-## 2.4 Fixed and random effects
 
-### 2.4.1 Univariate functions 
-
-#### 2.4.1.1 A univariate cubic expansion with fixed effects
-
-#### 2.4.1.2 A univariate cubic expansion with random effects
-
-### 2.4.2 Bivariate functions with jointly normal covariances
-
-#### 2.4.2.1 A linear bivariate function with interactions between jointly normal covariates and fixed effects
-
-##### 2.4.2.1.1 Positive correlation
-
-##### 2.4.2.1.2 Negative correlation
-
-#### 2.4.2.2 A linear bivariate function with interactions between jointly normal covariates and random effects
-
-
-## 2.5 Recovering estimates from models with omitted variables
-
-
-## 2.6 Recovering estimates from spatial econometric data generating processes
-
-### 2.6.1 Spatial error models (SEMs)
-
-### 2.6.2 Spatial autoregressive (SAR) models
-
-### 2.6.3 Spatial-X models
-
-### 2.6.3 STADL Up!
 
 
