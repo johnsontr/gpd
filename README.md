@@ -136,10 +136,22 @@ This package assumes MAP estimates are used, but there is nothing to preclude th
 
 ## 1.2 Package demo
 
-In this subsection, I demonstrate general usage based on a simple test case. I create data with a univariate data generating process having known properties and demonstrate each function's usage.
+In this subsection, I demonstrate general usage of the `gpd` package. I create data having known properties and demonstrate each function's usage.
 
+Links to the following repo code correspond to the figures in the the Simulations section of this README. The slow build of a variety of simple data generating processes and how to estimate their anticipated effects is a useful way to get intuition on how to use the `gpd` package.
 
+[Univariate linear](https://github.com/johnsontr/gpd/blob/main/simulations/univariate_linear.m)
+[Univariate quadratic](https://github.com/johnsontr/gpd/blob/main/simulations/univariate_quadratic.m)
+[Univariate cubic](https://github.com/johnsontr/gpd/blob/main/simulations/univariate_cubic.m)
 
+[Bivariate linear](https://github.com/johnsontr/gpd/blob/main/simulations/bivariate_linear.m)
+[Bivariate linear with interactions](https://github.com/johnsontr/gpd/blob/main/simulations/bivariate_linear_interaction.m)
+
+[Positively correlated bivariate linear](https://github.com/johnsontr/gpd/blob/main/simulations/jointly_poscorr_bivariate_linear.m)
+[Positively correlated bivariate linear with interactions](https://github.com/johnsontr/gpd/blob/main/simulations/jointly_poscorr_bivariate_linear_interaction.m)
+
+[Negatively correlated bivariate linear](https://github.com/johnsontr/gpd/blob/main/simulations/jointly_negcorr_bivariate_linear.m)
+[Negatively correlated bivariate linear with interactions](https://github.com/johnsontr/gpd/blob/main/simulations/jointly_negcorr_bivariate_linear_interaction.m)
 
 
 
